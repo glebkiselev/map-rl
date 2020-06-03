@@ -147,7 +147,7 @@ def create_dir(path):
 
 
 def main():
-    task_num = '1'
+    task_num = '2'
     path_prefix = f'tasks_jsons/task{task_num}/'
     planner_steps_path = path_prefix + 'planner_steps/'
     planner_steps_parsed_path = path_prefix + 'planner_steps_parsed/'
