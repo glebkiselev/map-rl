@@ -65,7 +65,7 @@ class QLearningAgent(Agent):
             state = self.environment.reset()
             state = str(state)
             total_reward = 0.0
-            for _ in itertools.count():
+            for _ in range(1000):
                 # choose action by eps greedy policy
                 action = self.act(state)
                 # if illigal act -5 if nice act +5 reward else rew -1

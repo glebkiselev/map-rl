@@ -5,15 +5,15 @@
             41.0
         ],
         "in_hand": "nothing",
-        "action": "right"
+        "action": "down"
     },
     {
         "agent": [
-            41.0,
-            42.0
+            42.0,
+            41.0
         ],
         "in_hand": "nothing",
-        "action": "down"
+        "action": "right"
     },
     {
         "agent": [

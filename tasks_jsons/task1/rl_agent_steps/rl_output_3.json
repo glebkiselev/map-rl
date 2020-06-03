@@ -9,32 +9,32 @@
             97.0
         ],
         "in_hand": "block_1.0",
+        "action": "right"
+    },
+    {
+        "agent": [
+            41.0,
+            98.0
+        ],
+        "block-b": [
+            41.0,
+            98.0
+        ],
+        "in_hand": "block_1.0",
         "action": "down"
     },
     {
         "agent": [
             42.0,
-            97.0
+            98.0
         ],
         "block-b": [
             42.0,
-            97.0
+            98.0
         ],
         "in_hand": "block_1.0",
         "action": "put down",
-        "block_pos": 6
-    },
-    {
-        "agent": [
-            42.0,
-            97.0
-        ],
-        "block-b": [
-            41.0,
-            97.0
-        ],
-        "in_hand": "nothing",
-        "action": "right"
+        "block_pos": 7
     },
     {
         "agent": [

@@ -9,16 +9,16 @@
             151.0
         ],
         "in_hand": "block_1.0",
-        "action": "down"
+        "action": "right"
     },
     {
         "agent": [
-            69.0,
-            151.0
+            68.0,
+            152.0
         ],
         "block-b": [
-            69.0,
-            151.0
+            68.0,
+            152.0
         ],
         "in_hand": "block_1.0",
         "action": "put down",
@@ -26,15 +26,15 @@
     },
     {
         "agent": [
-            69.0,
-            151.0
+            68.0,
+            152.0
         ],
         "block-b": [
             68.0,
             151.0
         ],
         "in_hand": "nothing",
-        "action": "right"
+        "action": "down"
     },
     {
         "agent": [

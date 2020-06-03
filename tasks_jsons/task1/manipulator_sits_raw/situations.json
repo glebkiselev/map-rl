@@ -1,0 +1,101 @@
+[
+    {
+        "manipulator_angles": [
+            0,
+            0,
+            0
+        ],
+        "grabbed": false,
+        "block_pos": 4,
+        "task": "grab",
+        "id": 0
+    },
+    {
+        "manipulator_angles": [
+            0,
+            0,
+            0
+        ],
+        "grabbed": true,
+        "block_pos": 7,
+        "task": "release",
+        "id": 1
+    },
+    {
+        "manipulator_angles": [
+            0,
+            0,
+            0
+        ],
+        "grabbed": true,
+        "block_pos": 6,
+        "task": "release",
+        "id": 2
+    },
+    {
+        "manipulator_angles": [
+            0,
+            0,
+            0
+        ],
+        "grabbed": true,
+        "block_pos": 6,
+        "task": "release",
+        "id": 3
+    },
+    {
+        "manipulator_angles": [
+            0,
+            0,
+            0
+        ],
+        "grabbed": true,
+        "block_pos": 6,
+        "task": "release",
+        "id": 4
+    },
+    {
+        "manipulator_angles": [
+            0,
+            0,
+            0
+        ],
+        "grabbed": true,
+        "block_pos": 6,
+        "task": "release",
+        "id": 5
+    },
+    {
+        "manipulator_angles": [
+            0,
+            0,
+            0
+        ],
+        "grabbed": true,
+        "block_pos": 0,
+        "task": "release",
+        "id": 6
+    },
+    {
+        "manipulator_angles": [
+            0,
+            0,
+            0
+        ],
+        "grabbed": false,
+        "block_pos": 1,
+        "task": "grab",
+        "id": 7
+    },
+    {
+        "manipulator_angles": [
+            0,
+            0,
+            0
+        ],
+        "grabbed": true,
+        "block_pos": 0,
+        "task": "release",
+        "id": 8
+    }
+]
