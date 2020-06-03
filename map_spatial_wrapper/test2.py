@@ -46,10 +46,12 @@ def save_steps(solution, problem_path, save_path):
     for i in solution:
         for j in i.values():
             for k in j:
-                if k[1] != 'Clarify':
-                    situations.append({'map': map_data,
+                if k[1] != 'Clarify' and k[1] != 'Abstract' and k[1] != 'rotate':
+                    sit = {'map': map_data,
                                        'global-start': k[6][0],
-                                       'global-finish': k[6][1]})
+                                       'global-finish': k[6][1]}
+                    if sit not in situations:
+                        situations.append(sit)
     for i, sit in enumerate(situations):
         with open(save_path + f'/{i}.json', 'w+') as write:
             write.write(json.dumps(sit, indent=4))

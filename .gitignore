@@ -128,3 +128,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Sign exp
+*.swm
+
+# Gifs
+*.gif

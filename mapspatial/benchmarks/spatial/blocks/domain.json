@@ -60,7 +60,8 @@
           "block":[
             "block-a",
             "block-b",
-            "block-c"
+            "block-c",
+            "block-d"
           ],
           "size": [
             "big",

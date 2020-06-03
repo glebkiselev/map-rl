@@ -7,6 +7,65 @@ from functools import reduce
 from mapcore.swm.src.components.semnet import Sign
 
 
+def draw(state, mapjs, gif = False):
+    from PIL import Image, ImageDraw, ImageOps
+    import random
+    k = 10
+    map_coords = mapjs['map-size'][0]*k, mapjs['map-size'][1]*k
+    image = Image.new("RGB", map_coords,
+                      (210, 210, 220))
+    draw = ImageDraw.Draw(image)
+    for name, coords in state['objects'].items():
+        new_coords = [(coords['x'] - coords['r'])*k, (coords['y'] - coords['r'])*k, (coords['x'] + coords['r'])*k,
+                      (coords['y'] + coords['r'])*k]
+        col = random.randint(100, 255)
+        if 'ag' in name:
+            fill = (col, 0, 0)
+        elif 'block' in name:
+            fill = (0, col // 2, col // 2)
+        draw.rectangle(new_coords, fill=fill, outline="black")
+    del draw
+    image = ImageOps.expand(image, border=10, fill='black')
+    if not gif:
+        image.show()
+    else:
+        return image
+
+def draw_gif(solutions):
+    frames = []
+    for sol in solutions:
+        for abs_act in sol.values():
+            for act in abs_act:
+                if isinstance(act[6], dict):
+                    state = act[6]
+                else:
+                    state = act[6][1]
+                new_frame = draw(state, {'map-size':(250,250)}, gif = True)
+                frames.append(new_frame)
+    frames[0].save('robots.gif', format='GIF', append_images=frames[1:], save_all=True, duration=100, loop=0)
+
+
+def sit_simularity(base, sit1, sit2):
+    cell_4_sit1 = sit1.sign.images[2].spread_down_activity_view(1)['cell-4']
+    cell_4_sit2 = sit2.sign.images[2].spread_down_activity_view(1)['cell-4']
+    len_x1 = cell_4_sit1[2] - cell_4_sit1[0]
+    len_x2 = cell_4_sit2[2] - cell_4_sit2[0]
+    diff = len_x1 - len_x2
+    # Добавить, что меньше фокус может быть, а больше - нет
+    if diff >= len_x1 or diff >=len_x2:
+        return False
+
+    sub1 = [event for event in itertools.chain(sit1.cause, sit1.effect) if "contain" not in event.get_signs_names() and 'orientation' not in event.get_signs_names()]
+    sub2 = [event for event in itertools.chain(sit2.cause, sit2.effect) if "contain" not in event.get_signs_names() and 'orientation' not in event.get_signs_names()]
+    for event2 in sub2:
+        for event1 in sub1:
+            if event2.resonate(base, event1):
+                break
+        else:
+            return False
+
+    return True
+
 def search_cm(events_list, signs, base='image'):
     searched = {}
     for event in events_list:
@@ -1025,7 +1084,10 @@ def tree_refinement(line, opendelim, closedelim):
             #stack.append(eval(num))
             if len(stack) > 0:
                 prevpos = stack.pop()
-                yield prevpos, eval(num), len(stack)
+                try:
+                    yield prevpos, eval(num), len(stack)
+                except SyntaxError:
+                    print()
             else:
                 # error
                 print("encountered extraneous closing quote at pos {}: '{}'".format(pos, line[pos:]))

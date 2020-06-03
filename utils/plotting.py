@@ -44,3 +44,28 @@ def plot_episode_stats(stats, title_prefix, smoothing_window=10, noshow=False):
         plt.show()
 
     return fig1, fig2, fig3
+
+def plot_average_reward(smoothing_window=10):
+    import os
+    import pickle
+    plots = {}
+    for file in os.listdir(os.getcwd()):
+        if 'interval' in file:
+            with open(file, 'rb') as f:
+                rewards = pickle.load(f)
+        if '30x30' in file:
+            plots['30x30'] = rewards
+        elif '40x40' in file:
+            plots['40x40'] = rewards
+        elif '50x50' in file:
+            plots['50x50'] = rewards
+    for name, rewards in plots.items():
+        rewards_smoothed = pd.Series(rewards).rolling(smoothing_window, min_periods=smoothing_window).mean()
+        plt.plot(range(len(rewards_smoothed)), rewards_smoothed, label=name)
+    plt.xlabel("Iteration")
+    plt.ylabel("Rewards")
+    plt.legend()
+    plt.title("Q-learning rewards for maps of various sizes")
+    plt.show()
+
+plot_average_reward()

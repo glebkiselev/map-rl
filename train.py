@@ -21,7 +21,7 @@ def train_rl(parameters):
     gamma = parameters['gamma']
     alpha = parameters['alpha']
     epsilon = parameters['epsilon']
-    env_name = "BlocksWorld-v1"
+    env_name = "envs.blocks:BlocksWorld-v1"
     if os.path.exists(parameters['bench']):
         with open(parameters['bench'], 'r') as read:
             map_dict = json.load(read)
@@ -29,7 +29,11 @@ def train_rl(parameters):
         raise FileNotFoundError
     env = gym.make(env_name, map_dict=map_dict)
     agent = QLearningAgent(env, gamma=gamma, alpha=alpha, epsilon=epsilon)
-    average_eps_reward, all_rewards, average_rewards = agent.train(num_episodes, True)
+    all_rewards, average_rewards = agent.train(num_episodes, True)
+    # import pickle
+    # with open('interval_50x50', 'wb') as fp:
+    #     pickle.dump(all_rewards, fp)
+
     policy = q_to_policy(agent.q)
     if parameters['plot']:
         env.render(policy=policy)
@@ -77,7 +81,7 @@ def train_rl_multiple_files(paths, parameters):
 def apply_manipulator_model(situations_path, to_path):
     with open(situations_path + 'situations.json', 'r') as read:
         situations = json.load(read)
-    env_name = "Manipulator-v1"
+    env_name = "envs.manipulator:Manipulator-v1"
     current_situation = situations[0]
     for i in range(len(situations)):
         env = gym.make(env_name, situation=current_situation)
@@ -143,7 +147,7 @@ def create_dir(path):
 
 
 def main():
-    task_num = '0'
+    task_num = '1'
     path_prefix = f'tasks_jsons/task{task_num}/'
     planner_steps_path = path_prefix + 'planner_steps/'
     planner_steps_parsed_path = path_prefix + 'planner_steps_parsed/'
@@ -162,7 +166,7 @@ def main():
     print('PLANNER FINISHED, PARSING TO RL STARTED')
 
     # parse high-level step representations to rl env-friendly
-    parse(planner_steps_path, planner_steps_parsed_path, multiple=True, window_size=20)
+    parse(planner_steps_path, planner_steps_parsed_path, multiple=True, window_size=30)
     print('PARSING TO RL FINISHED, RL LEARNING STARTED')
 
     parsed_tasks_len = len(os.listdir(planner_steps_parsed_path))

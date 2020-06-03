@@ -1,62 +1,79 @@
 [
     {
         "manipulator": [
-            135.0,
-            135.0,
-            90.0
-        ],
-        "grabbed": true,
-        "action": "3CCW"
-    },
-    {
-        "manipulator": [
-            135.0,
-            135.0,
-            75.0
-        ],
-        "grabbed": true,
-        "action": "3CCW"
-    },
-    {
-        "manipulator": [
-            135.0,
-            135.0,
+            0.0,
+            0.0,
+            0.0,
             60.0
         ],
         "grabbed": true,
-        "action": "3CCW"
+        "action": "2CW"
     },
     {
         "manipulator": [
-            135.0,
-            135.0,
-            45.0
+            0.0,
+            30.0,
+            0.0,
+            60.0
         ],
         "grabbed": true,
-        "action": "3CCW"
+        "action": "2CW"
     },
     {
         "manipulator": [
-            135.0,
-            135.0,
+            0.0,
+            60.0,
+            0.0,
+            60.0
+        ],
+        "grabbed": true,
+        "action": "2CW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            90.0,
+            0.0,
+            60.0
+        ],
+        "grabbed": true,
+        "action": "2CW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            120.0,
+            0.0,
+            60.0
+        ],
+        "grabbed": true,
+        "action": "2CW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            150.0,
+            0.0,
+            60.0
+        ],
+        "grabbed": true,
+        "action": "4CCW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            150.0,
+            0.0,
             30.0
         ],
         "grabbed": true,
-        "action": "3CCW"
+        "action": "4CCW"
     },
     {
         "manipulator": [
-            135.0,
-            135.0,
-            15.0
-        ],
-        "grabbed": true,
-        "action": "3CCW"
-    },
-    {
-        "manipulator": [
-            135.0,
-            135.0,
+            0.0,
+            150.0,
+            0.0,
             0.0
         ],
         "grabbed": true,
@@ -64,164 +81,922 @@
     },
     {
         "manipulator": [
-            135.0,
+            0.0,
             120.0,
+            0.0,
             0.0
         ],
         "grabbed": true,
-        "action": "3CCW"
+        "action": "2CW"
     },
     {
         "manipulator": [
-            135.0,
-            120.0,
-            -15.0
+            0.0,
+            150.0,
+            0.0,
+            0.0
         ],
         "grabbed": true,
         "action": "2CCW"
     },
     {
         "manipulator": [
-            135.0,
-            105.0,
-            -15.0
+            0.0,
+            120.0,
+            0.0,
+            0.0
         ],
         "grabbed": true,
-        "action": "3CCW"
+        "action": "2CW"
     },
     {
         "manipulator": [
-            135.0,
-            105.0,
-            -30.0
+            0.0,
+            150.0,
+            0.0,
+            0.0
         ],
         "grabbed": true,
         "action": "2CCW"
     },
     {
         "manipulator": [
-            135.0,
-            90.0,
-            -30.0
+            0.0,
+            120.0,
+            0.0,
+            0.0
         ],
         "grabbed": true,
-        "action": "3CCW"
+        "action": "2CW"
     },
     {
         "manipulator": [
-            135.0,
-            90.0,
-            -45.0
-        ],
-        "grabbed": true,
-        "action": "3CCW"
-    },
-    {
-        "manipulator": [
-            135.0,
-            90.0,
-            -60.0
+            0.0,
+            150.0,
+            0.0,
+            0.0
         ],
         "grabbed": true,
         "action": "2CCW"
     },
     {
         "manipulator": [
-            135.0,
-            75.0,
-            -60.0
+            0.0,
+            120.0,
+            0.0,
+            0.0
         ],
         "grabbed": true,
-        "action": "1CCW"
+        "action": "2CW"
     },
     {
         "manipulator": [
-            120.0,
-            75.0,
-            -60.0
-        ],
-        "grabbed": true,
-        "action": "3CCW"
-    },
-    {
-        "manipulator": [
-            120.0,
-            75.0,
-            -75.0
+            0.0,
+            150.0,
+            0.0,
+            0.0
         ],
         "grabbed": true,
         "action": "2CCW"
     },
     {
         "manipulator": [
+            0.0,
             120.0,
-            60.0,
-            -75.0
+            0.0,
+            0.0
         ],
         "grabbed": true,
-        "action": "3CCW"
+        "action": "2CW"
     },
     {
         "manipulator": [
-            120.0,
-            60.0,
-            -90.0
+            0.0,
+            150.0,
+            0.0,
+            0.0
         ],
         "grabbed": true,
         "action": "2CCW"
     },
     {
         "manipulator": [
+            0.0,
             120.0,
-            45.0,
-            -90.0
+            0.0,
+            0.0
         ],
         "grabbed": true,
-        "action": "1CCW"
+        "action": "2CW"
     },
     {
         "manipulator": [
-            105.00000000000001,
-            45.0,
-            -90.0
+            0.0,
+            150.0,
+            0.0,
+            0.0
         ],
         "grabbed": true,
-        "action": "1CCW"
+        "action": "2CCW"
     },
     {
         "manipulator": [
-            90.0,
-            45.0,
-            -90.0
+            0.0,
+            120.0,
+            0.0,
+            0.0
         ],
         "grabbed": true,
-        "action": "1CCW"
+        "action": "2CW"
     },
     {
         "manipulator": [
-            75.0,
-            45.0,
-            -90.0
+            0.0,
+            150.0,
+            0.0,
+            0.0
         ],
         "grabbed": true,
-        "action": "1CCW"
+        "action": "2CCW"
     },
     {
         "manipulator": [
-            60.0,
-            45.0,
-            -90.0
+            0.0,
+            120.0,
+            0.0,
+            0.0
         ],
         "grabbed": true,
-        "action": "1CCW"
+        "action": "2CW"
     },
     {
         "manipulator": [
-            45.0,
-            45.0,
-            -90.0
+            0.0,
+            150.0,
+            0.0,
+            0.0
         ],
         "grabbed": true,
-        "action": "release"
+        "action": "2CCW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            120.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            150.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CCW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            120.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            150.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CCW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            120.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            150.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CCW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            120.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            150.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CCW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            120.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            150.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CCW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            120.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            150.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CCW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            120.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            150.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CCW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            120.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            150.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CCW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            120.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            150.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CCW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            120.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            150.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CCW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            120.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            150.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CCW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            120.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            150.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CCW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            120.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            150.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CCW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            120.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            150.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CCW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            120.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            150.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CCW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            120.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            150.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CCW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            120.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            150.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CCW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            120.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            150.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CCW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            120.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            150.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CCW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            120.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            150.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CCW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            120.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            150.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CCW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            120.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            150.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CCW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            120.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            150.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CCW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            120.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            150.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CCW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            120.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            150.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CCW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            120.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            150.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CCW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            120.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            150.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CCW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            120.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            150.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CCW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            120.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            150.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CCW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            120.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            150.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CCW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            120.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            150.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CCW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            120.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            150.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CCW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            120.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            150.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CCW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            120.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            150.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CCW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            120.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            150.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CCW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            120.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            150.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CCW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            120.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            150.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CCW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            120.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CW"
+    },
+    {
+        "manipulator": [
+            0.0,
+            150.0,
+            0.0,
+            0.0
+        ],
+        "grabbed": true,
+        "action": "2CCW"
     }
 ]

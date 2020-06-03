@@ -2,7 +2,7 @@ import json
 import os
 
 
-def parse(from_path, to_path, multiple=True, window_size=20):
+def parse(from_path, to_path, multiple=True, window_size=30):
     file_paths = []
     if multiple:
         if not os.path.exists(to_path):
@@ -11,11 +11,17 @@ def parse(from_path, to_path, multiple=True, window_size=20):
             file_paths.append(from_path + filename)
     else:
         file_paths.append(from_path)
-    file_paths.sort()
+    fp = []
+    for i in range(len(file_paths)):
+        files = []
+        for file in file_paths:
+            if f'{i}.json' in file:
+                files.append(file)
+        fp.append(min(files, key = lambda files:len(files)))
     united_task = None
     united_tasks_indices = None
     count = 0
-    for one_file_path in file_paths:
+    for one_file_path in fp:
         with open(one_file_path, 'r') as read:
             planner_data = json.load(read)
         full_rl_data = {'map': {'walls': None}}
@@ -38,14 +44,19 @@ def parse(from_path, to_path, multiple=True, window_size=20):
         block_names = [name for name in block_names if 'block-' in name]
         for key in block_names:
             blocks[key] = {}
-            if key == agent['holding_start']:  # task is to put down a block
+            if key == agent['holding_start'] and key !=agent['holding_goal']:  # task is to put down a block
                 s_item = start['ag1']
                 g_item = goal[key]
                 s_item['r'] = g_item['r']
-            elif key == agent['holding_goal']:  # task is to pick up a block
+            elif key == agent['holding_goal'] and key !=agent['holding_start']:  # task is to pick up a block
                 s_item = start[key]
                 g_item = goal['ag1']
                 g_item['r'] = s_item['r']
+            elif key == agent['holding_start'] and key ==agent['holding_goal']: # task to move with block
+                s_item = start['ag1']
+                g_item = goal['ag1']
+                g_item['r'] = 1 #todo check anywhere
+                s_item['r'] = 1
             else:
                 s_item = start[key]
                 g_item = goal[key]
@@ -72,8 +83,8 @@ def parse(from_path, to_path, multiple=True, window_size=20):
             united_tasks_indices = str(count)
             count += 1
             continue
-        if is_in_window(united_task, full_rl_data, window_size):
-            united_task = join_tasks(united_task, full_rl_data)
+        if is_in_window(united_task, full_rl_data, window_size): # check if few planner steps in 1 RL window
+            united_task = join_tasks(united_task, full_rl_data) # previous full_rl_data
             united_tasks_indices += str(count)
         else:
             name = 'tasks_' + united_tasks_indices + '.json'
@@ -88,9 +99,18 @@ def parse(from_path, to_path, multiple=True, window_size=20):
 
 
 def is_in_window(old_task, new_task, window):
-    if old_task['agent']['holding_start'] or old_task['agent']['holding_goal'] or \
-       new_task['agent']['holding_start'] or new_task['agent']['holding_goal']:
+    if (old_task['agent']['holding_start'] and not old_task['agent']['holding_goal']) or \
+            (new_task['agent']['holding_start'] and not new_task['agent']['holding_goal']) or \
+        (not old_task['agent']['holding_start'] and  old_task['agent']['holding_goal'])or \
+            (not new_task['agent']['holding_start'] and  new_task['agent']['holding_goal']) or\
+                (not old_task['agent']['holding_goal'] and new_task['agent']['holding_start']) or\
+            (old_task['agent']['holding_goal'] and not new_task['agent']['holding_start']):
         return False
+    if old_task['agent']['holding_goal'] is not None:
+        if old_task['agent']['holding_start'] == old_task['agent']['holding_goal'] \
+            == new_task['agent']['holding_goal'] == new_task['agent']['holding_start']:
+            if not ((new_task['agent']['start_x'] == new_task['agent']['goal_x']) and (new_task['agent']['start_y'] == new_task['agent']['goal_y'])):
+                return False # all movement with blocks are in separate files iff the movement was.
     old_xs, old_ys = get_changing_points(old_task)
     new_xs, new_ys = get_changing_points(new_task)
     minx, maxx, miny, maxy = bounding_rect_points(old_xs+new_xs, old_ys+new_ys)
@@ -106,7 +126,16 @@ def join_tasks(old_task, new_task):
     assert old_task['agent']['goal_x'] == new_task['agent']['start_x'], 'agent steps in bad order'
     block_names = list(old_task['blocks'].keys())
     for name in block_names:
-        assert old_task['blocks'][name] == new_task['blocks'][name], f'block {name} is different in tasks'
+        try:
+            assert old_task['blocks'][name] == new_task['blocks'][name], f'block {name} coords are different in tasks'
+        except AssertionError:
+            if (new_task['blocks'][name]['start_x'] == new_task['blocks'][name]['goal_x']) and \
+                (new_task['blocks'][name]['start_y'] == new_task['blocks'][name]['goal_y']):
+                result_task = old_task
+                result_task = crop_task_map(result_task)
+                return result_task
+            else:
+                raise AssertionError
     result_task = new_task
     result_task['agent']['start_x'] = old_task['agent']['start_x']
     result_task = crop_task_map(result_task)

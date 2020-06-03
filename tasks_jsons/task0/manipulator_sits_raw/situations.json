@@ -6,7 +6,7 @@
             0
         ],
         "grabbed": false,
-        "block_pos": 0,
+        "block_pos": 1,
         "task": "grab",
         "id": 0
     },
@@ -28,7 +28,7 @@
             0
         ],
         "grabbed": false,
-        "block_pos": 0,
+        "block_pos": 1,
         "task": "grab",
         "id": 2
     },

@@ -2,7 +2,7 @@ import sys
 
 from mapcore.swm.src.components.semnet import Sign
 from mapcore.swm.src.components.sign_task import *
-from mapspatial.grounding import utils as ut
+import mapspatial.grounding.utils as ut
 
 DEFAULT_FILE_PREFIX = 'wmodel_'
 DEFAULT_FILE_SUFFIX = '.swm'

@@ -52,6 +52,10 @@ class BlocksWorld(gym.Env):
     def _map_init(self):
         self.num_rows = self.map_dict['map']['rows']
         self.num_cols = self.map_dict['map']['cols']
+        if self.num_rows == 1:
+            self.num_rows = 2 # too small table doesn't let learning
+        if self.num_cols == 1:
+            self.num_cols = 2
         if self.map_dict['map']['walls'] is not None:
             self.walls = []
             for wall in self.map_dict['map']['walls']:
@@ -70,15 +74,23 @@ class BlocksWorld(gym.Env):
         self.coord_modes = []
         self.block_names = []
         self.delivered = []
+        agent = self.map_dict['agent']
         for name, block in blocks.items():
-            if block['start_x'] != block['goal_x'] or block['start_x'] != block['goal_x']:
-                self.blocks_start[name] = {'x': block['start_x'], 'y': block['start_y']}
-                self.blocks_dest[name] = {'x': block['goal_x'], 'y': block['goal_y']}
+            if block['start_x'] != block['goal_x'] or block['start_y'] != block['goal_y']:
+                if (agent['holding_start'] is not None) and (agent['holding_goal'] is None):
+                    self.blocks_start[name] = {'x': 0.0, 'y': 0.0}
+                    self.blocks_dest[name] = {'x': block['goal_x'], 'y': block['goal_y']}
+                else:
+                    self.blocks_start[name] = {'x': block['start_x'], 'y': block['start_y']}
+                    self.blocks_dest[name] = {'x': 0.0, 'y': 0.0}
                 self.delivered.append(False)
                 self.coord_modes.append(block['coord_mode'])
                 self.block_names.append(name)
+
+        if agent['holding_start'] != agent['holding_goal'] and ((agent['holding_start'] is not None)  or (agent['holding_goal'] is not None)):
+            agent['start_x'] = agent['start_y'] = agent['goal_x'] = agent[
+                'goal_y'] = 0.0  # pick-up and stack only from start
         self.num_blocks = len(self.delivered)
-        agent = self.map_dict['agent']
         self.agent_coord_mode = agent['coord_mode']
         b_in_h = 0
         if agent['holding_start'] is not None:
@@ -103,9 +115,9 @@ class BlocksWorld(gym.Env):
         return [i // self.num_rows, i % self.num_rows]
 
     def _encode(self, agent, blocks, block_in_hand):
-        rc = self.num_rows * self.num_cols
-        i = self._encode_row_col(agent)
-        i *= rc
+        rc = self.num_rows * self.num_cols # получаем размер Q-таблицы
+        i = self._encode_row_col(agent) # местоположение агента
+        i *= rc # номер нач ситуации?
         for j, (_, v) in enumerate(blocks.items()):
             block_info = [v['x'], v['y']]
             i += self._encode_row_col(block_info)
@@ -341,7 +353,7 @@ class BlocksWorld(gym.Env):
             if by > ay:
                 return 2
         elif bx == ax:
-            if by < ba:
+            if by < ay:
                 return 3
             if by > ay:
                 return 4

@@ -5,6 +5,7 @@ import sys
 import time
 import os
 from copy import deepcopy, copy
+from random import choice, randint
 from multiprocessing import Process, Pipe
 import platform
 
@@ -22,7 +23,7 @@ if platform.system() != 'Windows':
     delim = '/'
 else:
     delim = '\\'
-load_dir = os.getcwd() + delim + 'mapspatial' + delim + 'temp' + delim
+load_dir = os.getcwd() + delim + 'src' + delim + 'temp' + delim
 
 class SpAgent(PlanningAgent):
     def __init__(self):
@@ -86,7 +87,7 @@ class SpAgent(PlanningAgent):
             pddl_solutions = main([problem_file, "mapmulti.agent.planning_agent", "MAgent", "False"])
         else:
             sys.path.append(projectPath+'map-core')
-            from mapcore import test0
+            import test0
             main = getattr(test0, 'main')
             pddl_solutions = main([problem_file, "mapcore.planning.agent.planning_agent", "PlanningAgent", "False"])
 
@@ -126,7 +127,7 @@ class SpAgent(PlanningAgent):
         clear_block = None
         move_block = None
 
-        # we need to know coords of block in effect
+        # we need to know object's coords in effect
         for el in action[2].effect:
             el_signs = el.get_signs()
             if (action[1] == 'pick-up' or action[1] == 'unstack')\
@@ -155,54 +156,99 @@ class SpAgent(PlanningAgent):
         else:
             obj = move_block
 
-        def get_pos(ag_pos, obj_pos):
+        def get_pos(ag_pos, obj_pos, borders):
             """
             Thus function was implemented to foresee the agent's position
             after it will manipulate with object.
             """
+            def check_borders(x, y, borders):
+                for border in borders:
+                    if (border[0] <= x <= border[2]) and (border[1] <= y <= border[3]):
+                        return False
+                return True
+
+            def get_random_side(obj_pos, ag_pos):
+                """
+                get the closest path without borders. To make it random - delete path.
+                """
+                csides = ['ar', 'br', 'r', 'bl', 'al', 'l', 'a', 'b']
+                path = []
+                while csides:
+                    side = csides[0]
+                    x, y, orient = getattr(self, side)(obj_pos, ag_pos)
+                    if check_borders(x, y, borders):
+                        p = math.sqrt((x-ag_pos['x'])**2 + (y-ag_pos['y'])**2)
+                        path.append(((x, y, orient), p))
+                        csides.remove(side)
+                    else:
+                        csides.remove(side)
+                min_dist = None
+                for place, dist in path:
+                    if not min_dist: min_dist = dist
+                    if min_dist > dist:
+                        min_dist = dist
+                return [place for place, path in path if path == min_dist][0]
+
             if ag_pos['x'] < obj_pos['x']:
                 if ag_pos['y'] < obj_pos['y']-ag_pos['r']:
-                    x = obj_pos['x']- obj_pos['r'] - 4*ag_pos['r']
-                    y = obj_pos['y'] - obj_pos['r'] - 4*ag_pos['r']
-                    orient = 'below-right'
+                    x, y, orient = self.br(obj_pos, ag_pos)
+                    if check_borders(x, y, borders):
+                        return x, y, orient
+                    else:
+                        return get_random_side(obj_pos, ag_pos)
+
                 elif ag_pos['y'] > obj_pos['y']+ag_pos['r']:
-                    x = obj_pos['x']- obj_pos['r'] - 10*ag_pos['r']
-                    y = obj_pos['y'] + obj_pos['r']+ 10*ag_pos['r']
-                    orient = 'above-right'
+                    x, y, orient = self.ar(obj_pos, ag_pos)
+                    if check_borders(x, y, borders):
+                        return x, y, orient
+                    else:
+                        return get_random_side(obj_pos, ag_pos)
+
                 else:
-                    x = obj_pos['x'] - obj_pos['r'] - 4*ag_pos['r']
-                    y = obj_pos['y']
-                    orient = 'right'
+                    x, y, orient = self.r(obj_pos, ag_pos)
+                    if check_borders(x, y, borders):
+                        return x, y, orient
+                    else:
+                        return get_random_side(obj_pos, ag_pos)
             elif ag_pos['x'] > obj_pos['x']:
                 if ag_pos['y'] < obj_pos['y']-ag_pos['r']:
-                    x = obj_pos['x'] + obj_pos['r'] + 4*ag_pos['r']
-                    y = obj_pos['y'] - obj_pos['r'] - 4*ag_pos['r']
-                    orient = 'below-left'
+                    x, y, orient = self.bl(obj_pos, ag_pos)
+                    if check_borders(x, y, borders):
+                        return x, y, orient
+                    else:
+                        return get_random_side(obj_pos, ag_pos)
                 elif ag_pos['y'] > obj_pos['y']+ag_pos['r']:
-                    x = obj_pos['x'] + obj_pos['r'] + 4*ag_pos['r']
-                    y = obj_pos['y'] + obj_pos['r'] + 4*ag_pos['r']
-                    orient = 'above-left'
+                    x, y, orient = self.al(obj_pos, ag_pos)
+                    if check_borders(x, y, borders):
+                        return x, y, orient
+                    else:
+                        return get_random_side(obj_pos, ag_pos)
                 else:
-                    x = obj_pos['x'] + obj_pos['r'] + 2*ag_pos['r']
-                    y = obj_pos['y']
-                    orient = 'left'
+                    x, y, orient = self.l(obj_pos, ag_pos)
+                    if check_borders(x, y, borders):
+                        return x, y, orient
+                    else:
+                        return get_random_side(obj_pos, ag_pos)
             else:
                 if ag_pos['y'] < obj_pos['y']:
-                    x = ag_pos['x']
-                    y = obj_pos['y'] - obj_pos['r'] - 2*ag_pos['r']
-                    orient = 'below'
+                    x, y, orient = self.b(obj_pos, ag_pos)
+                    if check_borders(x, y, borders):
+                        return x, y, orient
+                    else:
+                        return get_random_side(obj_pos, ag_pos)
                 else:
-                    x = ag_pos['x']
-                    y = obj_pos['y'] + obj_pos['r'] + 2*ag_pos['r']
-                    orient = 'above'
-            return x, y, orient
+                    x, y, orient = self.a(obj_pos, ag_pos)
+                    if check_borders(x, y, borders):
+                        return x, y, orient
+                    else:
+                        return get_random_side(obj_pos, ag_pos)
 
         # todo change to set of applicable poses
         size = None
         cl_lv = 0
         if action[1] == 'pick-up' or action[1] == 'unstack':
             obj_pos = new_sit['objects'][obj.name]
-            x, y, orient = get_pos(ag_pos, obj_pos)
+            x, y, orient = get_pos(ag_pos, obj_pos, self.task.additions[3]['wall'])
             ag_pos['x'] = x
             ag_pos['y'] = y
             # check old size, on which agent can perform an action
@@ -223,7 +269,7 @@ class SpAgent(PlanningAgent):
             obj_pos['r'] = self.task.additions[0][0]['objects'][obj.name]['r']
         elif action[1] == 'stack':
             ground_coords = new_sit['objects'][ground_block.name]
-            x, y, orient = get_pos(ag_pos, ground_coords)
+            x, y, orient = get_pos(ag_pos, ground_coords, self.task.additions[3]['wall'])
             # if we need to move, or stay on prev position
             if math.sqrt((ag_pos['y']-y)**2 + (ag_pos['x']-x)**2) >= ag_pos['r']*2:
                 ag_pos['x'] = x
@@ -251,6 +297,54 @@ class SpAgent(PlanningAgent):
         state_fixation(action_situation, cell_coords, self.task.signs, 'cell')
 
         return action_situation, action_map, cl_lv, new_sit, size
+
+    def br(self, obj_pos, ag_pos):
+        x = obj_pos['x'] - obj_pos['r'] - 6 * ag_pos['r']
+        y = obj_pos['y'] - obj_pos['r'] - 6 * ag_pos['r']
+        orient = 'below-right'
+        return x, y, orient
+
+    def ar(self, obj_pos, ag_pos):
+        x = obj_pos['x'] - obj_pos['r'] - 6 * ag_pos['r']
+        y = obj_pos['y'] + obj_pos['r'] + 6 * ag_pos['r']
+        orient = 'above-right'
+        return x, y, orient
+
+    def r(self, obj_pos, ag_pos):
+        x = obj_pos['x'] - obj_pos['r'] - 6 * ag_pos['r']
+        y = obj_pos['y']
+        orient = 'right'
+        return x, y, orient
+
+    def al(self, obj_pos, ag_pos):
+        x = obj_pos['x'] + obj_pos['r'] + 6 * ag_pos['r']
+        y = obj_pos['y'] + obj_pos['r'] + 6 * ag_pos['r']
+        orient = 'above-left'
+        return x, y, orient
+
+    def bl(self, obj_pos, ag_pos):
+        x = obj_pos['x'] + obj_pos['r'] + 6 * ag_pos['r']
+        y = obj_pos['y'] - obj_pos['r'] - 6 * ag_pos['r']
+        orient = 'below-left'
+        return x, y, orient
+
+    def l(self, obj_pos, ag_pos):
+        x = obj_pos['x'] + obj_pos['r'] + 6 * ag_pos['r']
+        y = obj_pos['y']
+        orient = 'left'
+        return x, y, orient
+
+    def a(self, obj_pos, ag_pos):
+        x = obj_pos['x']
+        y = obj_pos['y'] + obj_pos['r'] + 6 * ag_pos['r']
+        orient = 'above'
+        return x, y, orient
+
+    def b(self, obj_pos, ag_pos):
+        x = obj_pos['x']
+        y = obj_pos['y'] - obj_pos['r'] - 6 * ag_pos['r']
+        orient = 'below'
+        return x, y, orient
 
     def copy_action(self, act, agent, old_sit):
         from mapspatial.grounding.utils import pm_parser
@@ -336,10 +430,13 @@ class SpAgent(PlanningAgent):
         self.task.start_map = self.task.goal_map
         self.task.init_cl_lv = self.task.goal_cl_lv
         self.task.iteration = max(self.task.additions[0])
-        if isinstance(solution[0][-1][-1], dict):
-            map_goal = solution[0][-1][-1]
+        if solution:
+            if isinstance(solution[0][-1][-1], dict):
+                map_goal = solution[0][-1][-1]
+            else:
+                map_goal = solution[0][-1][-1][1]
         else:
-            map_goal = solution[0][-1][-1][1]
+            raise Exception("Не удалось синтезировать план.")
         return solution, map_goal
 
     def change_start(self, map, act):
@@ -465,7 +562,7 @@ def agent_activation(agpath, agtype, name, agents, problem, backward, subsearch,
         open(pddl_task)
     except FileNotFoundError:
         type = problem.name.split(' ')[0]
-        pddl_task = os.getcwd() + delim+ 'mapspatial'+delim+'benchmarks'+delim+type+delim\
+        pddl_task = os.getcwd() + delim+ 'src'+delim+'benchmarks'+delim+type+delim\
                     + task_paths[-2] +delim+ task_paths[-1] + delim+ 'scenario' +delim+ task_paths[
             -1] + '.pddl'
 
@@ -557,6 +654,9 @@ def agent_activation(agpath, agtype, name, agents, problem, backward, subsearch,
                             break
                 if flag:
                     break
+    from mapspatial.grounding.utils import draw_gif
+    draw_gif(solutions)
+
     file_name = workman.task.save_signs(solutions)
 
     if file_name:

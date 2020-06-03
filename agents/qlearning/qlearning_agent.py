@@ -53,6 +53,7 @@ class QLearningAgent(Agent):
     def train(self, num_episodes=500, verbose=False):
         total_total_reward = 0.0
         rewards = []
+        # for each episod while we train. Total - 1000 episodes
         for i_episode in range(num_episodes):
 
             # Print out which episode we're on.
@@ -60,22 +61,23 @@ class QLearningAgent(Agent):
                 if (i_episode + 1) % 1 == 0:
                     print("\rEpisode {}/{}.".format(i_episode + 1, num_episodes), end="")
                     sys.stdout.flush()
-
+            # set env to start values
             state = self.environment.reset()
             state = str(state)
             total_reward = 0.0
-            for t in itertools.count():
+            for _ in itertools.count():
+                # choose action by eps greedy policy
                 action = self.act(state)
+                # if illigal act -5 if nice act +5 reward else rew -1
                 next_state, reward, done, _ = self.environment.step(action)
                 next_state = str(next_state)
                 total_reward += reward
-
                 self.update(state, action, reward, next_state)
-
                 if done:
                     total_total_reward += total_reward
                     rewards.append(total_reward)
                     break
 
                 state = next_state
-        return total_total_reward / num_episodes, rewards  # return average eps reward
+        # return total_total_reward / num_episodes, rewards  # return average eps reward
+        return rewards, total_total_reward / num_episodes

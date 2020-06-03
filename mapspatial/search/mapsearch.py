@@ -3,16 +3,15 @@ import subprocess
 import json
 
 from mapcore.planning.search.mapsearch import *
-from mapspatial.grounding import planning_task as st
+import mapspatial.grounding.planning_task as st
 from mapspatial.grounding.utils import *
-
 
 MAX_CL_LV = 1
 
 class SpSearch(MapSearch):
     def __init__ (self, task, task_file, backward, subsearch, init_state=None, goal_state=None):
         super().__init__(task,'spatial', backward)
-        self.MAX_ITERATION = 30
+        self.MAX_ITERATION = 50
         if self.backward:
             self.goal_pm = task.start_situation.images[1]
             self.active_pm = task.goal_situation.images[1]
@@ -141,7 +140,7 @@ class SpSearch(MapSearch):
 
             next_pm, next_map, prev_state, direction = self._step_generating(active_pm, active_map, script, self.I_sign, iteration, prev_state, True)
 
-            if name != 'move':
+            if name != 'move' and 'subplan' not in name:
                 ag_place = self.additions[0][iteration]['objects'][self.I_obj.name]
             else:
                 ag_place = self.additions[0][iteration+1]['objects'][self.I_obj.name]
@@ -184,7 +183,8 @@ class SpSearch(MapSearch):
                 next_pm, goal_pm, next_map, goal_map, iteration, plan = self.abstract_search(self.I_obj.name, next_pm, goal_pm, next_map, goal_map, iteration, plan)
 
 
-            if next_pm.includes('image', goal_pm.sign.images[1]):
+            # if next_pm.includes('image', goal_pm.sign.images[1]):
+            if sit_simularity('image', next_pm, goal_pm.sign.images[1]):
                 if self.check_map:
                     if next_map.sign.images[1].includes('image', goal_map.sign.images[1]):
                         flag = True
@@ -207,8 +207,6 @@ class SpSearch(MapSearch):
                 recursive_plans = self._map_sp_iteration(next_pm, next_map, iteration + 1, plan, prev_state, goal_pm= goal_pm, goal_map=goal_map)
                 if recursive_plans:
                     final_plans.extend(recursive_plans)
-
-
         return final_plans
 
     def _precedent_search(self, active_pm):
@@ -428,7 +426,11 @@ class SpSearch(MapSearch):
                             prev_state[-1][3] - prev_state[-1][1]) // 2 + prev_state[-1][1]
 
 
-                    included_sit = [sit for sit in self.exp_sits if sit.includes('image', next_pm)]
+                    #included_sit = [sit for sit in self.exp_sits if sit.includes('image', next_pm)]
+                    included_sit = []
+                    for sit in self.exp_sits:
+                        if sit_simularity('image', sit, next_pm):
+                            included_sit.append(sit)
 
                     if included_sit:
                         if plan is None: plan = []
@@ -445,8 +447,7 @@ class SpSearch(MapSearch):
                         plan.append(
                             (active_pm, action[1].sign.name, action[1], action[0], None, (None, self.clarification_lv), (self.additions[0][max(self.additions[0])-1], self.additions[0][max(self.additions[0])])))
 
-
-            if next_pm.sign.images[1].includes('image', goal_pm.sign.images[1]):
+            if sit_simularity('image', next_pm.sign.images[1], goal_pm.sign.images[1]):
                 if goal_map:
                     if next_map.sign.images[1].includes('image', goal_map.sign.images[1]):
                         finall_plans.extend(plan)
@@ -719,7 +720,7 @@ class SpSearch(MapSearch):
             goal_size = [goal['objects'][agent]['x'] - x_size, goal['objects'][agent]['y'] - y_size, goal['objects'][agent]['x'] + x_size, goal['objects'][agent]['y'] + y_size]
             region_location, region_map = locater('region-', rmap, goal['objects'], borders)
             cell_location, cell_map, near_loc, cell_coords, clar_lv = cell_creater(goal_size, goal['objects'], region_location, borders)
-            events, direction, holding = pm_parser(check_pm.sign.images[1], agent, self.world_model)
+            events, direction, holding = pm_parser(check_pm.sign.images[1], agent, self.world_model, base='image')
             agent_state = state_prediction(self.world_model['I'], direction, self.world_model, holding)
             goal_sit_new = define_situation(sit_name + 'sp', cell_map, events, agent_state, self.world_model)
             goal_map = define_map(st.MAP_PREFIX + str(st.SIT_COUNTER), region_map, cell_location, near_loc,
@@ -1067,7 +1068,7 @@ class SpSearch(MapSearch):
         paths = []
         delim = '/'
         logging.info("Searching benchmark for %s experience action..." % script.sign.name)
-        for name in os.listdir(''):
+        for name in os.listdir('.'):
             if 'benchmark' in name.lower():
                 paths.append('.' + delim +name + delim)
         if not paths:

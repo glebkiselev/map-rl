@@ -1,7 +1,9 @@
-(define (problem BLOCKS-999-0) (:domain blocks)
+(define (problem BLOCKS-1-0) (:domain blocks)
 (:objects
 	block-a - block
+	block-c - block
 	block-b - block
+	block-d - block
     ag1 - agent
     big - size
 )
@@ -9,19 +11,30 @@
 	(handempty ag1)
 	(clear block-a)
 	(clear block-b)
+	(clear block-c)
+	(clear block-d)
 	(onground block-a)
 	(onground block-b)
+	(onground block-c)
+	(onground block-d)
 	(blocktype big block-a)
 	(blocktype big block-b)
+	(blocktype big block-c)
+	(blocktype big block-d)
 )
 (:goal
 	(and
 	    (handempty ag1)
-		(on block-b block-a)
+		(on block-a block-b)
+		(on block-c block-d)
         (blocktype big block-a)
         (blocktype big block-b)
-        (clear block-b)
-        (onground block-a)
+        (blocktype big block-c)
+        (blocktype big block-d)
+        (clear block-a)
+        (clear block-c)
+        (onground block-b)
+        (onground block-d)
 	)
 )
 

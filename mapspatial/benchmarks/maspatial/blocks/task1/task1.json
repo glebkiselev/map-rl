@@ -7,7 +7,8 @@
               [-20, -20, 520, -20],
               [-20, -20, -20, 520],
               [-20, 520, 520, 520],
-              [520, -20, 520, 520]
+              [520, -20, 520, 520],
+              [177, 177, 340, 340]
             ],
             "map-size": [
                     520,
@@ -21,7 +22,7 @@
                         "cause": [],
                         "effect": []
                 },
-                "orientation": "below",
+                "orientation": "below-right",
                 "activity": 4
                 },
                 "ag2":{
@@ -29,40 +30,40 @@
                         "cause": [],
                         "effect": []
                 },
-                "orientation": "right",
+                "orientation": "above-left",
                 "activity": 4
                 },
 
              "objects": {
                     "ag1": {
                         "r": 5,
-                        "x": 130.0,
+                        "x": 87.0,
                         "y": 260.0
                     },
                     "ag2": {
                         "r": 5,
-                        "x": 300.0,
-                        "y": 379.0
-                    },
-                    "block-b": {
-                        "r": 1,
-                        "x": 130.0,
-                        "y": 300.0
+                        "x": 435.0,
+                        "y": 260.0
                     },
                     "block-a": {
                         "r": 1,
-                        "x": 170.0,
-                        "y": 260.0
+                        "x": 131.0,
+                        "y": 304.0
+                    },
+                    "block-b": {
+                        "r": 1,
+                        "x": 427.0,
+                        "y": 427.0
                     },
                     "block-c": {
                         "r": 1,
-                        "x": 300.0,
-                        "y": 420.0
+                        "x": 392.0,
+                        "y": 218.0
                     },
                     "block-d": {
                         "r": 1,
-                        "x": 340.0,
-                        "y": 379.0
+                        "x": 131.0,
+                        "y": 131.0
                     }
              },
               "conditions":{
@@ -72,15 +73,15 @@
                       "effect":
                               []
                       },
-                    "blocktype-3": {
-                      "cause":
-                              ["big", "block-c"],
-                      "effect":
-                              []
-                      },
                     "blocktype-2": {
                       "cause":
                               ["small", "block-b"],
+                      "effect":
+                              []
+                      },
+                    "blocktype-3": {
+                      "cause":
+                              ["big", "block-c"],
                       "effect":
                               []
                       },
@@ -155,7 +156,7 @@
                           "cause": [],
                           "effect": []
                       },
-                  "orientation": "below-left",
+                  "orientation": "below-right",
                   "activity": 4
                   },
                   "ag2":{
@@ -163,39 +164,39 @@
                           "cause": [],
                           "effect": []
                   },
-                "orientation": "left",
+                "orientation": "above-left",
                   "activity": 4
                   },
               "objects": {
                     "ag1": {
                         "r": 5,
-                        "x": 130.0,
-                        "y": 260.0
+                        "x": 396.0,
+                        "y": 396.0
                     },
                     "ag2": {
                         "r": 5,
-                        "x": 331.0,
-                        "y": 396.0
-                    },
-                    "block-b": {
-                        "r": 1,
-                        "x": 170.0,
-                        "y": 260.0
+                        "x": 150.0,
+                        "y": 150.0
                     },
                     "block-a": {
                         "r": 1,
-                        "x": 170.0,
-                        "y": 260.0
+                        "x": 427.0,
+                        "y": 427.0
+                    },
+                    "block-b": {
+                        "r": 1,
+                        "x": 427.0,
+                        "y": 427.0
                     },
                     "block-c": {
                         "r": 1,
-                        "x": 300.0,
-                        "y": 420.0
+                        "x": 131.0,
+                        "y": 131.0
                     },
                     "block-d": {
                         "r": 1,
-                        "x": 300.0,
-                        "y": 420.0
+                        "x": 131.0,
+                        "y": 131.0
                     }
              },
               "conditions":{
@@ -205,15 +206,15 @@
                       "effect":
                               []
                       },
-                    "blocktype-3": {
-                      "cause":
-                              ["big", "block-c"],
-                      "effect":
-                              []
-                      },
                     "blocktype-2": {
                       "cause":
                               ["small", "block-b"],
+                      "effect":
+                              []
+                      },
+                    "blocktype-3": {
+                      "cause":
+                              ["big", "block-c"],
                       "effect":
                               []
                       },
@@ -225,42 +226,42 @@
                       },
                     "on-1": {
                             "cause":
-                                ["block-b","block-a"],
+                                ["block-a","block-b"],
                             "effect":
                                 []
 
                     },
                     "on-2": {
                             "cause":
-                                ["block-d","block-c"],
+                                ["block-c","block-d"],
                             "effect":
                                 []
 
                     },
                     "clear-1": {
                             "cause":
-                                ["block-d"],
+                                ["block-c"],
                             "effect":
                                 []
 
                     },
                     "clear-2": {
                             "cause":
-                                ["block-b"],
+                                ["block-a"],
                             "effect":
                                 []
 
                     },
                     "onground-1": {
                             "cause":
-                                ["block-a"],
+                                ["block-b"],
                             "effect":
                                 []
 
                     },
                     "onground-2": {
                             "cause":
-                                ["block-c"],
+                                ["block-d"],
                             "effect":
                                 []
 

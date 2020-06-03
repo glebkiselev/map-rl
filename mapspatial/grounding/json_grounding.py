@@ -4,7 +4,7 @@ from copy import deepcopy
 from mapcore.swm.src.components.semnet import Sign
 from mapspatial.grounding.planning_task import SpTask
 
-from mapspatial.grounding import utils as ut
+import mapspatial.grounding.utils as ut
 
 signs = {}
 
