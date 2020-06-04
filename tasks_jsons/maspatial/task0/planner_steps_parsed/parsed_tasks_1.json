@@ -1,17 +1,17 @@
 {
     "map": {
         "walls": null,
-        "rows": 84.0,
-        "cols": 84.0,
+        "rows": 31.0,
+        "cols": 31.0,
         "full_rows": 250,
         "full_cols": 250,
         "start_x": 64.0,
-        "start_y": 47.0
+        "start_y": 100.0
     },
     "agent": {
         "start_x": 0.0,
-        "start_y": 83.0,
-        "goal_x": 83.0,
+        "start_y": 30.0,
+        "goal_x": 30.0,
         "goal_y": 0.0,
         "holding_start": "block-b",
         "holding_goal": "block-b",
@@ -45,8 +45,8 @@
         },
         "block-b": {
             "start_x": 0.0,
-            "start_y": 83.0,
-            "goal_x": 83.0,
+            "start_y": 30.0,
+            "goal_x": 30.0,
             "goal_y": 0.0,
             "r": 1,
             "coord_mode": "cropped"

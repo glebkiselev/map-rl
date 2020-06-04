@@ -29,11 +29,11 @@ def get_agent(planner_data):
              'r': start[act_ag]['r']}
 
 
-def check_window_size(ut, window_size):
-    if ut['agent']['goal_x'] - ut['agent']['start_x'] > window_size or ut['agent']['goal_y'] - ut['agent']['start_y'] > window_size:
+def check_window_size(ut, window_size, index, to_path):
+    sub_tasks = []
+    if abs(ut['agent']['goal_x'] - ut['agent']['start_x']) > window_size or abs(ut['agent']['goal_y'] - ut['agent']['start_y']) > window_size:
         got_x = False
         got_y = False
-        sub_tasks = []
         ag_st = deepcopy([ut['agent']['start_x'], ut['agent']['start_y']])
         ag_g = deepcopy([ut['agent']['goal_x'], ut['agent']['goal_y']])
         hs = ut['agent']['holding_start']
@@ -43,29 +43,145 @@ def check_window_size(ut, window_size):
         else:
             move_block = None
         while not got_x and not got_y:
-            task = {}
-            task['agent'] = {}
-            task['map'] = deepcopy(ut['map'])
-            task['blocks'] = deepcopy(ut['blocks'])
-            if ag_st[0] + window_size < ag_g[0]:
-                task['agent']['start_x'] = ag_st[0]
-                task['agent']['goal_x'] = ag_st[0] + window_size
-                ag_st[0] = task['agent']['goal_x']
-            else:
-                task['agent']['start_x'] = ag_st[0]
-                task['agent']['goal_x'] = ag_g[0]
-                got_x = True
-            if ag_st[1] + window_size < ag_g[1]:
-                task['agent']['start_y'] = ag_st[1]
-                task['agent']['goal_y'] = ag_st[1] + window_size
-                ag_st[1] = task['agent']['goal_y']
-            else:
-                task['agent']['start_y'] = ag_st[1]
-                task['agent']['goal_y'] = ag_g[1]
-                got_y = True
+            task = deepcopy(ut)
+            if ag_g[0] > ag_st[0]:
+                if ag_st[0] + window_size < ag_g[0]:
+                    task['agent']['start_x'] = ag_st[0]
+                    task['agent']['goal_x'] = ag_st[0] + window_size
+                    ag_st[0] = task['agent']['goal_x']
+                else:
+                    task['agent']['start_x'] = ag_st[0]
+                    task['agent']['goal_x'] = ag_g[0]
+                    got_x = True
+            elif ag_g[0] < ag_st[0]:
+                if ag_st[0] - window_size > ag_g[0]:
+                    task['agent']['start_x'] = ag_st[0]
+                    task['agent']['goal_x'] = ag_st[0] - window_size
+                    ag_st[0] = task['agent']['goal_x']
+                else:
+                    task['agent']['start_x'] = ag_st[0]
+                    task['agent']['goal_x'] = ag_g[0]
+                    got_x = True
+            if ag_g[1] > ag_st[1]:
+                if ag_st[1] + window_size < ag_g[1]:
+                    task['agent']['start_y'] = ag_st[1]
+                    task['agent']['goal_y'] = ag_st[1] + window_size
+                    ag_st[1] = task['agent']['goal_y']
+                else:
+                    task['agent']['start_y'] = ag_st[1]
+                    task['agent']['goal_y'] = ag_g[1]
+                    got_y = True
+            elif ag_g[1] < ag_st[1]:
+                if ag_st[1] - window_size > ag_g[1]:
+                    task['agent']['start_y'] = ag_st[1]
+                    task['agent']['goal_y'] = ag_st[1] - window_size
+                    ag_st[1] = task['agent']['goal_y']
+                else:
+                    task['agent']['start_y'] = ag_st[1]
+                    task['agent']['goal_y'] = ag_g[1]
+                    got_y = True
+            if move_block:
+                task['blocks'][move_block]['start_x'] = task['agent']['start_x']
+                task['blocks'][move_block]['goal_x'] = task['agent']['goal_x']
+                task['blocks'][move_block]['start_y'] = task['agent']['start_y']
+                task['blocks'][move_block]['goal_y'] = task['agent']['goal_y']
+            sub_tasks.append(task)
+        for task in sub_tasks[:-1]:
+            name ='tasks_' + index + '.json'
+            with open(to_path + 'parsed_' + name, 'w+') as write:
+                write.write(json.dumps(crop_task_map(task), indent=4))
+            index = eval(index)
+            index+=1
+            index = str(index)
+    else:
+        sub_tasks.append(ut)
+    return sub_tasks[-1], index
 
 
-    return united_task
+def check_manipulator(ut, index, to_path):
+    """
+    Q-learning normally find subactions to pick-up and stack actions
+    only iff agent place and block goal place on 1 line. So in this
+    function we devide pickup and stack actions to move-to-line and move-to-block
+    """
+    ag_st = deepcopy([ut['agent']['start_x'], ut['agent']['start_y']])
+    hs = ut['agent']['holding_start']
+    hg = ut['agent']['holding_goal']
+    sub_tasks = []
+    block = None
+    sv_coord= None
+    ch_coord = None
+    if hs and not hg:
+        block = hs
+        ch_coord = 'goal_x', 'goal_y'
+    elif hg and not hs:
+        block = hg
+        ch_coord = 'start_x', 'start_y'
+    else:
+        sub_tasks.append(ut)
+    if block:
+        if ut['blocks'][block][ch_coord[0]] == ag_st[0] or ut['blocks'][block][ch_coord[1]] == ag_st[1]:
+            sub_tasks.append(ut)  # if already on 1 line we wouldnt do anything
+            return sub_tasks[-1], index
+        move_to_line = deepcopy(ut)
+        if abs(ut['blocks'][block][ch_coord[0]] - ag_st[0]) >= abs(ut['blocks'][block][ch_coord[1]] - ag_st[1]):
+            move_to_line['agent']['goal_y'] = move_to_line['blocks'][block][ch_coord[1]]
+        else:
+            move_to_line['agent']['goal_x'] = move_to_line['blocks'][block][ch_coord[0]]
+        if hs:
+            move_to_line['agent']['holding_goal'] = block
+            move_to_line['blocks'][block]['goal_x'] = move_to_line['agent']['goal_x']
+            move_to_line['blocks'][block]['goal_y'] = move_to_line['agent']['goal_y']
+        else:
+            move_to_line['blocks'][block]['goal_x'] = move_to_line['blocks'][block]['start_x']
+            move_to_line['blocks'][block]['goal_y'] = move_to_line['blocks'][block]['start_y']
+            move_to_line['agent']['holding_start'] = None
+            move_to_line['agent']['holding_goal'] = None
+        sub_tasks.append(move_to_line)
+        grab_ungrab = deepcopy(move_to_line)
+        grab_ungrab['agent']['start_x'] = grab_ungrab['agent']['goal_x']
+        grab_ungrab['agent']['start_y'] = grab_ungrab['agent']['goal_y']
+        if hg:
+            grab_ungrab['agent']['holding_start'] = None
+            grab_ungrab['agent']['holding_goal'] = block
+            grab_ungrab['blocks'][block]['goal_x'] = grab_ungrab['agent']['goal_x']
+            grab_ungrab['blocks'][block]['goal_y'] = grab_ungrab['agent']['goal_y']
+        else:
+            grab_ungrab['agent']['holding_start'] = block
+            grab_ungrab['agent']['holding_goal'] = None
+            grab_ungrab['blocks'][block]['start_x'] = grab_ungrab['agent']['start_x']
+            grab_ungrab['blocks'][block]['start_y'] = grab_ungrab['agent']['start_y']
+            grab_ungrab['blocks'][block]['goal_x'] = deepcopy(ut['blocks'][block]['goal_x'])
+            grab_ungrab['blocks'][block]['goal_y'] = deepcopy(ut['blocks'][block]['goal_y'])
+        sub_tasks.append(grab_ungrab)
+        move_to_start = deepcopy(grab_ungrab)
+        if hg:
+            move_to_start['agent']['goal_x'] = deepcopy(ut['agent']['goal_x'])
+            move_to_start['agent']['goal_y'] = deepcopy(ut['agent']['goal_y'])
+            move_to_start['agent']['holding_start'] = block
+            move_to_start['blocks'][block]['start_x'] = move_to_start['agent']['start_x']
+            move_to_start['blocks'][block]['start_y'] = move_to_start['agent']['start_y']
+            move_to_start['blocks'][block]['goal_x'] = move_to_start['agent']['goal_x']
+            move_to_start['blocks'][block]['goal_y'] = move_to_start['agent']['goal_y']
+        else:
+            move_to_start['agent']['goal_x'] = deepcopy(ut['agent']['goal_x'])
+            move_to_start['agent']['goal_y'] = deepcopy(ut['agent']['goal_y'])
+            move_to_start['agent']['holding_start'] = None
+            move_to_start['blocks'][block]['start_x'] = deepcopy(ut['blocks'][block]['goal_x'])
+            move_to_start['blocks'][block]['start_y'] = deepcopy(ut['blocks'][block]['goal_y'])
+            move_to_start['blocks'][block]['goal_x'] = deepcopy(ut['blocks'][block]['goal_x'])
+            move_to_start['blocks'][block]['goal_y'] = deepcopy(ut['blocks'][block]['goal_y'])
+        sub_tasks.append(move_to_start)
+        for task in sub_tasks[:-1]:
+            name ='tasks_' + index + '.json'
+            with open(to_path + 'parsed_' + name, 'w+') as write:
+                write.write(json.dumps(crop_task_map(task), indent=4))
+            index = eval(index)
+            index+=1
+            index = str(index)
+
+    return sub_tasks[-1], index
+
 
 
 def parse(from_path, to_path, multiple=True, window_size=30):
@@ -146,12 +262,15 @@ def parse(from_path, to_path, multiple=True, window_size=30):
             united_task = join_tasks(united_task, full_rl_data) # previous full_rl_data
             united_tasks_indices += str(count)
         else:
+            united_tasks_indices = str(count-1)
+            united_task, united_tasks_indices = check_window_size(united_task, window_size, united_tasks_indices, to_path)
+            united_task, united_tasks_indices = check_manipulator(united_task, united_tasks_indices, to_path)
             name = 'tasks_' + united_tasks_indices + '.json'
-            united_task = check_window_size(united_task, window_size)
             with open(to_path + 'parsed_' + name, 'w+') as write:
                 write.write(json.dumps(crop_task_map(united_task), indent=4))
             united_task = full_rl_data
-            united_tasks_indices = str(count)
+            count = eval(united_tasks_indices) + 1
+            #united_tasks_indices = str(count)
         count += 1
     name = 'tasks_' + united_tasks_indices + '.json'
     with open(to_path + 'parsed_' + name, 'w+') as write:

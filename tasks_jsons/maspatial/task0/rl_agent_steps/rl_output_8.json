@@ -1,0 +1,567 @@
+[
+    {
+        "agent": [
+            130.0,
+            193.0
+        ],
+        "block-d": [
+            107.0,
+            193.0
+        ],
+        "in_hand": "nothing",
+        "action": "up"
+    },
+    {
+        "agent": [
+            129.0,
+            193.0
+        ],
+        "block-d": [
+            107.0,
+            193.0
+        ],
+        "in_hand": "nothing",
+        "action": "up"
+    },
+    {
+        "agent": [
+            128.0,
+            193.0
+        ],
+        "block-d": [
+            107.0,
+            193.0
+        ],
+        "in_hand": "nothing",
+        "action": "up"
+    },
+    {
+        "agent": [
+            127.0,
+            193.0
+        ],
+        "block-d": [
+            107.0,
+            193.0
+        ],
+        "in_hand": "nothing",
+        "action": "up"
+    },
+    {
+        "agent": [
+            126.0,
+            193.0
+        ],
+        "block-d": [
+            107.0,
+            193.0
+        ],
+        "in_hand": "nothing",
+        "action": "up"
+    },
+    {
+        "agent": [
+            125.0,
+            193.0
+        ],
+        "block-d": [
+            107.0,
+            193.0
+        ],
+        "in_hand": "nothing",
+        "action": "up"
+    },
+    {
+        "agent": [
+            124.0,
+            193.0
+        ],
+        "block-d": [
+            107.0,
+            193.0
+        ],
+        "in_hand": "nothing",
+        "action": "up"
+    },
+    {
+        "agent": [
+            123.0,
+            193.0
+        ],
+        "block-d": [
+            107.0,
+            193.0
+        ],
+        "in_hand": "nothing",
+        "action": "up"
+    },
+    {
+        "agent": [
+            122.0,
+            193.0
+        ],
+        "block-d": [
+            107.0,
+            193.0
+        ],
+        "in_hand": "nothing",
+        "action": "right"
+    },
+    {
+        "agent": [
+            122.0,
+            194.0
+        ],
+        "block-d": [
+            107.0,
+            193.0
+        ],
+        "in_hand": "nothing",
+        "action": "up"
+    },
+    {
+        "agent": [
+            121.0,
+            194.0
+        ],
+        "block-d": [
+            107.0,
+            193.0
+        ],
+        "in_hand": "nothing",
+        "action": "up"
+    },
+    {
+        "agent": [
+            120.0,
+            194.0
+        ],
+        "block-d": [
+            107.0,
+            193.0
+        ],
+        "in_hand": "nothing",
+        "action": "up"
+    },
+    {
+        "agent": [
+            119.0,
+            194.0
+        ],
+        "block-d": [
+            107.0,
+            193.0
+        ],
+        "in_hand": "nothing",
+        "action": "up"
+    },
+    {
+        "agent": [
+            118.0,
+            194.0
+        ],
+        "block-d": [
+            107.0,
+            193.0
+        ],
+        "in_hand": "nothing",
+        "action": "up"
+    },
+    {
+        "agent": [
+            117.0,
+            194.0
+        ],
+        "block-d": [
+            107.0,
+            193.0
+        ],
+        "in_hand": "nothing",
+        "action": "up"
+    },
+    {
+        "agent": [
+            116.0,
+            194.0
+        ],
+        "block-d": [
+            107.0,
+            193.0
+        ],
+        "in_hand": "nothing",
+        "action": "up"
+    },
+    {
+        "agent": [
+            115.0,
+            194.0
+        ],
+        "block-d": [
+            107.0,
+            193.0
+        ],
+        "in_hand": "nothing",
+        "action": "up"
+    },
+    {
+        "agent": [
+            114.0,
+            194.0
+        ],
+        "block-d": [
+            107.0,
+            193.0
+        ],
+        "in_hand": "nothing",
+        "action": "up"
+    },
+    {
+        "agent": [
+            113.0,
+            194.0
+        ],
+        "block-d": [
+            107.0,
+            193.0
+        ],
+        "in_hand": "nothing",
+        "action": "up"
+    },
+    {
+        "agent": [
+            112.0,
+            194.0
+        ],
+        "block-d": [
+            107.0,
+            193.0
+        ],
+        "in_hand": "nothing",
+        "action": "up"
+    },
+    {
+        "agent": [
+            111.0,
+            194.0
+        ],
+        "block-d": [
+            107.0,
+            193.0
+        ],
+        "in_hand": "nothing",
+        "action": "up"
+    },
+    {
+        "agent": [
+            110.0,
+            194.0
+        ],
+        "block-d": [
+            107.0,
+            193.0
+        ],
+        "in_hand": "nothing",
+        "action": "up"
+    },
+    {
+        "agent": [
+            109.0,
+            194.0
+        ],
+        "block-d": [
+            107.0,
+            193.0
+        ],
+        "in_hand": "nothing",
+        "action": "up"
+    },
+    {
+        "agent": [
+            108.0,
+            194.0
+        ],
+        "block-d": [
+            107.0,
+            193.0
+        ],
+        "in_hand": "nothing",
+        "action": "pick up",
+        "block_pos": 0
+    },
+    {
+        "agent": [
+            108.0,
+            194.0
+        ],
+        "block-d": [
+            108.0,
+            194.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "down"
+    },
+    {
+        "agent": [
+            109.0,
+            194.0
+        ],
+        "block-d": [
+            109.0,
+            194.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "down"
+    },
+    {
+        "agent": [
+            110.0,
+            194.0
+        ],
+        "block-d": [
+            110.0,
+            194.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "down"
+    },
+    {
+        "agent": [
+            111.0,
+            194.0
+        ],
+        "block-d": [
+            111.0,
+            194.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "left"
+    },
+    {
+        "agent": [
+            111.0,
+            193.0
+        ],
+        "block-d": [
+            111.0,
+            193.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "down"
+    },
+    {
+        "agent": [
+            112.0,
+            193.0
+        ],
+        "block-d": [
+            112.0,
+            193.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "down"
+    },
+    {
+        "agent": [
+            113.0,
+            193.0
+        ],
+        "block-d": [
+            113.0,
+            193.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "down"
+    },
+    {
+        "agent": [
+            114.0,
+            193.0
+        ],
+        "block-d": [
+            114.0,
+            193.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "down"
+    },
+    {
+        "agent": [
+            115.0,
+            193.0
+        ],
+        "block-d": [
+            115.0,
+            193.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "down"
+    },
+    {
+        "agent": [
+            116.0,
+            193.0
+        ],
+        "block-d": [
+            116.0,
+            193.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "down"
+    },
+    {
+        "agent": [
+            117.0,
+            194.0
+        ],
+        "block-d": [
+            107.0,
+            193.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "down"
+    },
+    {
+        "agent": [
+            118.0,
+            194.0
+        ],
+        "block-d": [
+            108.0,
+            193.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "down"
+    },
+    {
+        "agent": [
+            119.0,
+            194.0
+        ],
+        "block-d": [
+            109.0,
+            193.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "down"
+    },
+    {
+        "agent": [
+            120.0,
+            194.0
+        ],
+        "block-d": [
+            110.0,
+            193.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "down"
+    },
+    {
+        "agent": [
+            121.0,
+            194.0
+        ],
+        "block-d": [
+            111.0,
+            193.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "down"
+    },
+    {
+        "agent": [
+            122.0,
+            194.0
+        ],
+        "block-d": [
+            112.0,
+            193.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "down"
+    },
+    {
+        "agent": [
+            123.0,
+            194.0
+        ],
+        "block-d": [
+            113.0,
+            193.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "down"
+    },
+    {
+        "agent": [
+            124.0,
+            194.0
+        ],
+        "block-d": [
+            114.0,
+            193.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "down"
+    },
+    {
+        "agent": [
+            125.0,
+            194.0
+        ],
+        "block-d": [
+            115.0,
+            193.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "down"
+    },
+    {
+        "agent": [
+            126.0,
+            194.0
+        ],
+        "block-d": [
+            116.0,
+            193.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "down"
+    },
+    {
+        "agent": [
+            127.0,
+            195.0
+        ],
+        "block-d": [
+            107.0,
+            193.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "down"
+    },
+    {
+        "agent": [
+            128.0,
+            195.0
+        ],
+        "block-d": [
+            108.0,
+            193.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "down"
+    },
+    {
+        "agent": [
+            129.0,
+            195.0
+        ],
+        "block-d": [
+            109.0,
+            193.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "down"
+    }
+]
