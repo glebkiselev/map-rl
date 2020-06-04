@@ -1,5 +1,71 @@
 import json
 import os
+from copy import deepcopy
+
+import math
+
+
+def get_agent(planner_data):
+    agents = [name for name in planner_data['global-start'] if 'ag' in name]
+    act_ag = None
+    start = planner_data['global-start']['objects']
+    goal = planner_data['global-finish']['objects']
+    for ag in agents:
+        if planner_data['global-start'][ag] != planner_data['global-finish'][ag]:
+            act_ag = ag
+            break
+        elif planner_data['global-start']['objects'][ag] != planner_data['global-finish']['objects'][ag]:
+            act_ag = ag
+            break
+
+    return act_ag, {'start_x': start[act_ag]['x'],
+             'start_y': start[act_ag]['y'],
+             'goal_x': goal[act_ag]['x'],
+             'goal_y': goal[act_ag]['y'],
+             'holding_start': planner_data['global-start'][act_ag]['holding']['cause'][1]
+             if 'holding' in planner_data['global-start'][act_ag] else None,
+             'holding_goal': planner_data['global-finish'][act_ag]['holding']['cause'][1]
+             if 'holding' in planner_data['global-finish'][act_ag] else None,
+             'r': start[act_ag]['r']}
+
+
+def check_window_size(ut, window_size):
+    if ut['agent']['goal_x'] - ut['agent']['start_x'] > window_size or ut['agent']['goal_y'] - ut['agent']['start_y'] > window_size:
+        got_x = False
+        got_y = False
+        sub_tasks = []
+        ag_st = deepcopy([ut['agent']['start_x'], ut['agent']['start_y']])
+        ag_g = deepcopy([ut['agent']['goal_x'], ut['agent']['goal_y']])
+        hs = ut['agent']['holding_start']
+        hg = ut['agent']['holding_goal']
+        if hs and hg: # this situation can be only in move action
+            move_block = hs
+        else:
+            move_block = None
+        while not got_x and not got_y:
+            task = {}
+            task['agent'] = {}
+            task['map'] = deepcopy(ut['map'])
+            task['blocks'] = deepcopy(ut['blocks'])
+            if ag_st[0] + window_size < ag_g[0]:
+                task['agent']['start_x'] = ag_st[0]
+                task['agent']['goal_x'] = ag_st[0] + window_size
+                ag_st[0] = task['agent']['goal_x']
+            else:
+                task['agent']['start_x'] = ag_st[0]
+                task['agent']['goal_x'] = ag_g[0]
+                got_x = True
+            if ag_st[1] + window_size < ag_g[1]:
+                task['agent']['start_y'] = ag_st[1]
+                task['agent']['goal_y'] = ag_st[1] + window_size
+                ag_st[1] = task['agent']['goal_y']
+            else:
+                task['agent']['start_y'] = ag_st[1]
+                task['agent']['goal_y'] = ag_g[1]
+                got_y = True
+
+
+    return united_task
 
 
 def parse(from_path, to_path, multiple=True, window_size=30):
@@ -30,31 +96,24 @@ def parse(from_path, to_path, multiple=True, window_size=30):
         full_rl_data['map']['cols'] = map_size[1]
         start = planner_data['global-start']['objects']
         goal = planner_data['global-finish']['objects']
-        agent = {'start_x': start['ag1']['x'],
-                 'start_y': start['ag1']['y'],
-                 'goal_x': goal['ag1']['x'],
-                 'goal_y': goal['ag1']['y'],
-                 'holding_start': planner_data['global-start']['ag1']['holding']['cause'][1]
-                 if 'holding' in planner_data['global-start']['ag1'] else None,
-                 'holding_goal': planner_data['global-finish']['ag1']['holding']['cause'][1]
-                 if 'holding' in planner_data['global-finish']['ag1'] else None,
-                 'r': start['ag1']['r']}
+        # On each step only 1 agent has an action -> Let's find it!
+        act_ag, agent = get_agent(planner_data)
         blocks = {}
         block_names = list(start.keys()) + ([agent['holding_start']] if agent['holding_start'] is not None else [])
         block_names = [name for name in block_names if 'block-' in name]
         for key in block_names:
             blocks[key] = {}
             if key == agent['holding_start'] and key !=agent['holding_goal']:  # task is to put down a block
-                s_item = start['ag1']
+                s_item = start[act_ag]
                 g_item = goal[key]
                 s_item['r'] = g_item['r']
             elif key == agent['holding_goal'] and key !=agent['holding_start']:  # task is to pick up a block
                 s_item = start[key]
-                g_item = goal['ag1']
+                g_item = goal[act_ag]
                 g_item['r'] = s_item['r']
             elif key == agent['holding_start'] and key ==agent['holding_goal']: # task to move with block
-                s_item = start['ag1']
-                g_item = goal['ag1']
+                s_item = start[act_ag]
+                g_item = goal[act_ag]
                 g_item['r'] = 1 #todo check anywhere
                 s_item['r'] = 1
             else:
@@ -88,6 +147,7 @@ def parse(from_path, to_path, multiple=True, window_size=30):
             united_tasks_indices += str(count)
         else:
             name = 'tasks_' + united_tasks_indices + '.json'
+            united_task = check_window_size(united_task, window_size)
             with open(to_path + 'parsed_' + name, 'w+') as write:
                 write.write(json.dumps(crop_task_map(united_task), indent=4))
             united_task = full_rl_data

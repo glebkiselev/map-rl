@@ -53,9 +53,9 @@ class BlocksWorld(gym.Env):
         self.num_rows = self.map_dict['map']['rows']
         self.num_cols = self.map_dict['map']['cols']
         if self.num_rows == 1:
-            self.num_rows = 2 # too small table doesn't let learning
+            self.num_rows = 3 # too small table doesn't let learning
         if self.num_cols == 1:
-            self.num_cols = 2
+            self.num_cols = 3 # too small table doesn't let learning
         if self.map_dict['map']['walls'] is not None:
             self.walls = []
             for wall in self.map_dict['map']['walls']:

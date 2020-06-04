@@ -105,6 +105,21 @@ def pm_parser(pm, agent, signs, base = 'meaning'):
 
     return conditions, direction, holding
 
+def get_goal_coords_by_block(ag, cur_sit, goal_sit):
+    ho = 'holding'
+    he = 'handempty'
+    block = None
+    if ho in cur_sit[ag] and he in goal_sit[ag]:
+        for el in cur_sit[ag][ho]['cause']:
+            if el != ag:
+                block = el
+        return goal_sit['objects'][block]['x'], goal_sit['objects'][block]['y']
+    else:
+        for el in goal_sit[ag][ho]['cause']:
+            if el != ag:
+                block = el
+        return cur_sit['objects'][block]['x'], cur_sit['objects'][block]['y']
+
 
 def locater(location_name, map_size, objects, walls):
     dislocations = {}
@@ -195,9 +210,12 @@ def size_founder(reg_loc, obj_loc, ag, border, cl_lv=0):
         proto = scale(dislocations[target])
         size, cl_lv = size_founder(proto, obj_loc, ag, border, cl_lv)
     else:
-        size = scale(dislocations[target])
+        size_x = (dislocations[target][2] - dislocations[target][0]) // 2
+        size_y = (dislocations[target][3] - dislocations[target][1]) // 2
+        new_cell_4 = [obj_loc[ag]['x'] - size_x, obj_loc[ag]['y'] - size_y, obj_loc[ag]['x'] + size_x, obj_loc[ag]['y'] + size_y]
+        size = scale(new_cell_4)
         if not size[3] - size[1] > obj_loc[ag]['r'] or not size[2] - size[0] > obj_loc[ag]['r']:
-            raise Exception('Can not place object! Too little space!')
+            raise Exception('Can not place object! Too little space!') # todo customize it
             # sys.exit(1)
     return size, cl_lv
 

@@ -1,0 +1,35 @@
+[
+    {
+        "manipulator_angles": [
+            0,
+            0,
+            0
+        ],
+        "grabbed": false,
+        "block_pos": 7,
+        "task": "grab",
+        "id": 0
+    },
+    {
+        "manipulator_angles": [
+            0,
+            0,
+            0
+        ],
+        "grabbed": true,
+        "block_pos": 6,
+        "task": "release",
+        "id": 1
+    },
+    {
+        "manipulator_angles": [
+            0,
+            0,
+            0
+        ],
+        "grabbed": true,
+        "block_pos": 0,
+        "task": "release",
+        "id": 2
+    }
+]

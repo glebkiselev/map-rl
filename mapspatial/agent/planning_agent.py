@@ -5,7 +5,7 @@ import sys
 import time
 import os
 from copy import deepcopy, copy
-from random import choice, randint
+from random import shuffle
 from multiprocessing import Process, Pipe
 import platform
 
@@ -74,6 +74,20 @@ class SpAgent(PlanningAgent):
         :param benchmark:
         :return: tuple(pddl action, spatial effect situation, spatial effect map)
         """
+        def get_subplans(solution):
+            prev_ag = ''
+            subplans = []
+            sp = []
+            for act in solution:
+                if act[3].name != prev_ag and prev_ag:
+                    subplans.append(sp)
+                    sp = []
+                sp.append(act)
+                prev_ag = act[3].name
+            subplans.append(sp)
+            return subplans
+
+
         if platform.system() != 'Windows':
             delim = '/'
             projectPath = delim+''.join([el+delim for el in os.getcwd().split(delim)[1:-1]])
@@ -92,27 +106,44 @@ class SpAgent(PlanningAgent):
             pddl_solutions = main([problem_file, "mapcore.planning.agent.planning_agent", "PlanningAgent", "False"])
 
         pddl_solution = pddl_solutions[self.name][0][0]
-        #sol_goal = pddl_solutions[self.name][0][1]
         path_to_file = pddl_solutions[self.name][1]
         pddl_signs = self.load_swm(path = path_to_file)
 
         scenario = []
         cl_lv = 0
         size = None
-        prev_ag = ''
+
         if benchmark == 'blocks':
             block_signs = set()
             for _, cm in pddl_signs['block'].significances.items():
                 block_signs |= cm.get_signs()
-            cur_sit = self.task.additions[0][max(self.task.additions[0])]
-            for action in pddl_solution:
-                if prev_ag != action[3].name:
-                    size = None
-                    cl_lv = 0
-                spat_cm, spat_map, cl_lv, new_sit, size = self.get_spatial_sit_blocks(action, cur_sit, size, cl_lv)
-                scenario.append(((action[1], action[3].name), spat_cm, spat_map, cur_sit, new_sit, cl_lv))
-                cur_sit = new_sit
-                prev_ag = action[3].name
+            max_key = max(self.task.additions[0])
+            pddl_subplans = get_subplans(pddl_solution)
+            flag = True
+            while flag:
+                try:
+                    cur_sit = self.task.additions[0][max_key]
+                    for subpl in pddl_subplans:
+                        for ind, action in enumerate(subpl):
+                            if ind == 0:
+                                size = None
+                                cl_lv = 0
+                            spat_cm, spat_map, cl_lv, new_sit, size = self.get_spatial_sit_blocks(action, cur_sit, size, cl_lv)
+                            scenario.append(((action[1], action[3].name), spat_cm, spat_map, cur_sit, new_sit, cl_lv))
+                            cur_sit = new_sit
+                    flag = False
+                except SystemExit:
+                    """
+                    Мы не можем задать последовательность выполнения действий агентов жестко. 
+                    Правильная последовательность может быть получена перебором всех вариантов,
+                    либо наличием сценария, эвристик выбора...(сначала доехать до кухни, потом заварить кофе)
+                    """
+                    logging.info('Изменяем последовательность действий роботов...')
+                    shuffle(pddl_subplans)
+                    scenario = []
+                    # clean wrong sequence
+                    for el in copy(self.task.additions[0]):
+                        if el > max_key: self.task.additions[0].pop(el)
         return scenario
 
     def get_spatial_sit_blocks(self, action, cur_sit, prev_size, prev_cl):

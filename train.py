@@ -137,8 +137,8 @@ def extract_situations(from_path, to_path):
         write.write(json.dumps(situations, indent=4))
 
 
-def train_planner(task_num):
-    planner_main(sys.argv[1:], str(task_num), f'tasks_jsons/task{task_num}/planner_steps/')
+def train_planner(task_num, type):
+    planner_main(sys.argv[1:], str(task_num), type, f'tasks_jsons/{type}/task{task_num}/planner_steps/')
 
 
 def create_dir(path):
@@ -147,13 +147,16 @@ def create_dir(path):
 
 
 def main():
-    task_num = '2'
-    path_prefix = f'tasks_jsons/task{task_num}/'
+    task_num = '0'
+    type = 'maspatial'
+    type_prefix = f'tasks_jsons/{type}/'
+    path_prefix = f'{type_prefix}task{task_num}/'
     planner_steps_path = path_prefix + 'planner_steps/'
     planner_steps_parsed_path = path_prefix + 'planner_steps_parsed/'
     rl_agent_steps_path = path_prefix + f'rl_agent_steps/'
     manipulator_situations_path = path_prefix + 'manipulator_sits_raw/'
     manipulator_situations_solved_path = path_prefix + 'manipulator_sits_solved/'
+    create_dir(type_prefix)
     create_dir(path_prefix)
     create_dir(planner_steps_path)
     create_dir(planner_steps_parsed_path)
@@ -162,7 +165,7 @@ def main():
     create_dir(manipulator_situations_solved_path)
 
     # planner creates high-level steps
-    train_planner(task_num)
+    train_planner(task_num, type)
     print('PLANNER FINISHED, PARSING TO RL STARTED')
 
     # parse high-level step representations to rl env-friendly

@@ -1825,8 +1825,8 @@ class SpSearch(MapSearch):
                 goal = self.goal_state
             else:
                 goal = self.init_state
-            goal_coords = goal['objects'][self.I_obj.name]['x'], goal['objects'][self.I_obj.name]['y']
 
+            goal_coords = get_goal_coords_by_block(self.I_obj.name, self.additions[0][iteration], goal)
             # further are coefficient game
             if stright and script.sign.name == 'rotate':
                 f_cs = cell_coords_new[stright[0].name]
@@ -1916,8 +1916,8 @@ class SpSearch(MapSearch):
                 # if we are already in the goal cell
                 if a < size:
                     if self.clarification_lv >= self.goal_cl_lv:
-                        est_events = [event for event in estimation.cause if "I" not in event.get_signs_names()]
-                        ce_events = [event for event in self.goal_pm.cause if "I" not in event.get_signs_names()]
+                        est_events = [event for event in estimation.cause if "orientation" not in event.get_signs_names()]
+                        ce_events = [event for event in self.goal_pm.cause if "orientation" not in event.get_signs_names()]
                         for event in est_events:
                             for ce in ce_events:
                                 if event.resonate('image', ce):

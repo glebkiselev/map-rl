@@ -7,7 +7,7 @@ from .config_master import create_config, get_config
 from mapspatial.mapplanner import MapPlanner
 
 
-def main(args, task_num, solution_save_path):
+def main(args, task_num, type, solution_save_path):
     if platform.system() != 'Windows':
         delim = '/'
     else:
@@ -23,12 +23,12 @@ def main(args, task_num, solution_save_path):
     if args.problem and args.agpath and args.agtype:
         if not args.config_path:
             path = create_config(benchmark=os.path.abspath(args.problem), delim=delim,
-                                 task_type='spatial', agpath = args.agpath, agtype = args.agtype, backward=args.backward)
+                                 task_type=type, agpath = args.agpath, agtype = args.agtype, backward=args.backward)
         else:
             path = args.config_path
     else:
         if not args.config_path:
-            path = create_config(task_num=task_num, delim=delim, backward='False', task_type='spatial')
+            path = create_config(task_num=task_num, delim=delim, backward='False', task_type=type)
         else:
             path = args.config_path
 
