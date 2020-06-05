@@ -1851,7 +1851,7 @@ class SpSearch(MapSearch):
             a = math.sqrt(
                 (goal_coords[1] - prev_mid[1]) ** 2 + (goal_coords[0] - prev_mid[0]) ** 2)
 
-            # if next cell closer - good
+            # if next cell closer - good (iff not near the block)
             if not stright[1]:
                 if path <= a:
                     counter += 4
@@ -1946,6 +1946,28 @@ class SpSearch(MapSearch):
                                 counter+=2
                             elif prev_act == 'rotate' and script.sign.name == 'rotate':
                                 counter = 0
+                        else:
+                            try: # move and rotate to blocks
+                                hold = estimation.get_iner(self.world_model['holding'], 'image')
+                                block_h = None
+                                und_block = None
+                                for h in hold:
+                                    if self.world_model['I'] in h.get_signs():
+                                        block_h = [el.name for el in h.get_signs() if el.name != 'I'][0]
+                                ons = [res['cause'] for el, res in goal['conditions'].items() if
+                                         'on' in el and len(res['cause']) == 2]
+                                for on in ons:
+                                    if block_h in on:
+                                        for el in on:
+                                            if el != block_h:
+                                                und_block = el
+                                                break
+                                stright_names = [el.sign.name for el in stright[1]]
+                                if und_block in stright_names:
+                                    counter +=5
+                            except KeyError:
+                                pass
+
                     if script.sign.name != 'rotate' and script.sign.name != 'move':
                         counter+=5
                 # we are in region, but not in cell.

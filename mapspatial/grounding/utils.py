@@ -114,12 +114,13 @@ def get_goal_coords_by_block(ag, cur_sit, goal_sit):
             if el != ag:
                 block = el
         return goal_sit['objects'][block]['x'], goal_sit['objects'][block]['y']
-    else:
+    elif ho in goal_sit[ag]:
         for el in goal_sit[ag][ho]['cause']:
             if el != ag:
                 block = el
         return cur_sit['objects'][block]['x'], cur_sit['objects'][block]['y']
-
+    else:
+        return goal_sit['objects'][ag]['x'], goal_sit['objects'][ag]['y']
 
 def locater(location_name, map_size, objects, walls):
     dislocations = {}

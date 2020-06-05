@@ -1,0 +1,50 @@
+[
+    {
+        "agent": [
+            439.0,
+            220.0
+        ],
+        "in_hand": "nothing",
+        "action": "left"
+    },
+    {
+        "agent": [
+            439.0,
+            219.0
+        ],
+        "in_hand": "nothing",
+        "action": "left"
+    },
+    {
+        "agent": [
+            439.0,
+            218.0
+        ],
+        "in_hand": "nothing",
+        "action": "up"
+    },
+    {
+        "agent": [
+            438.0,
+            218.0
+        ],
+        "in_hand": "nothing",
+        "action": "up"
+    },
+    {
+        "agent": [
+            437.0,
+            218.0
+        ],
+        "in_hand": "nothing",
+        "action": "up"
+    },
+    {
+        "agent": [
+            436.0,
+            218.0
+        ],
+        "in_hand": "nothing",
+        "action": "up"
+    }
+]

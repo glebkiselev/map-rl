@@ -147,7 +147,7 @@ def create_dir(path):
 
 
 def main():
-    task_num = '0'
+    task_num = '3'
     type = 'maspatial'
     type_prefix = f'tasks_jsons/{type}/'
     path_prefix = f'{type_prefix}task{task_num}/'

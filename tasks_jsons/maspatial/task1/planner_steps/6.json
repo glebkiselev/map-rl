@@ -1,0 +1,278 @@
+{
+    "map": {
+        "wall": [
+            [
+                -20,
+                -20,
+                520,
+                -20
+            ],
+            [
+                -20,
+                -20,
+                -20,
+                520
+            ],
+            [
+                -20,
+                520,
+                520,
+                520
+            ],
+            [
+                520,
+                -20,
+                520,
+                520
+            ],
+            [
+                177,
+                177,
+                340,
+                340
+            ]
+        ],
+        "map-size": [
+            520,
+            520
+        ]
+    },
+    "global-start": {
+        "ag1": {
+            "orientation": "right",
+            "activity": 4,
+            "cl_lv_init": 1,
+            "cl_lv_goal": 1,
+            "holding": {
+                "cause": [
+                    "ag1",
+                    "block-a"
+                ],
+                "effect": []
+            }
+        },
+        "ag2": {
+            "handempty": {
+                "cause": [],
+                "effect": []
+            },
+            "orientation": "above-left",
+            "activity": 4,
+            "cl_lv_init": 1,
+            "cl_lv_goal": 0
+        },
+        "objects": {
+            "ag1": {
+                "r": 5,
+                "x": 249.0,
+                "y": 374.0
+            },
+            "ag2": {
+                "r": 5,
+                "x": 435.0,
+                "y": 260.0
+            },
+            "block-b": {
+                "r": 1,
+                "x": 422.0,
+                "y": 497.0
+            },
+            "block-c": {
+                "r": 1,
+                "x": 392.0,
+                "y": 218.0
+            },
+            "block-d": {
+                "r": 1,
+                "x": 263.0,
+                "y": 30.0
+            }
+        },
+        "conditions": {
+            "blocktype-1": {
+                "cause": [
+                    "small",
+                    "block-a"
+                ],
+                "effect": []
+            },
+            "blocktype-2": {
+                "cause": [
+                    "small",
+                    "block-b"
+                ],
+                "effect": []
+            },
+            "blocktype-3": {
+                "cause": [
+                    "big",
+                    "block-c"
+                ],
+                "effect": []
+            },
+            "blocktype-4": {
+                "cause": [
+                    "big",
+                    "block-d"
+                ],
+                "effect": []
+            },
+            "clear-2": {
+                "cause": [
+                    "block-b"
+                ],
+                "effect": []
+            },
+            "clear-3": {
+                "cause": [
+                    "block-c"
+                ],
+                "effect": []
+            },
+            "clear-4": {
+                "cause": [
+                    "block-d"
+                ],
+                "effect": []
+            },
+            "onground-2": {
+                "cause": [
+                    "block-b"
+                ],
+                "effect": []
+            },
+            "onground-3": {
+                "cause": [
+                    "block-c"
+                ],
+                "effect": []
+            },
+            "onground-4": {
+                "cause": [
+                    "block-d"
+                ],
+                "effect": []
+            }
+        },
+        "cl_lv": 1
+    },
+    "global-finish": {
+        "ag1": {
+            "orientation": "right",
+            "activity": 4,
+            "cl_lv_init": 1,
+            "cl_lv_goal": 1,
+            "holding": {
+                "cause": [
+                    "ag1",
+                    "block-a"
+                ],
+                "effect": []
+            }
+        },
+        "ag2": {
+            "handempty": {
+                "cause": [],
+                "effect": []
+            },
+            "orientation": "above-left",
+            "activity": 4,
+            "cl_lv_init": 1,
+            "cl_lv_goal": 0
+        },
+        "objects": {
+            "ag1": {
+                "r": 5,
+                "x": 303.0,
+                "y": 374.0
+            },
+            "ag2": {
+                "r": 5,
+                "x": 435.0,
+                "y": 260.0
+            },
+            "block-b": {
+                "r": 1,
+                "x": 422.0,
+                "y": 497.0
+            },
+            "block-c": {
+                "r": 1,
+                "x": 392.0,
+                "y": 218.0
+            },
+            "block-d": {
+                "r": 1,
+                "x": 263.0,
+                "y": 30.0
+            }
+        },
+        "conditions": {
+            "blocktype-1": {
+                "cause": [
+                    "small",
+                    "block-a"
+                ],
+                "effect": []
+            },
+            "blocktype-2": {
+                "cause": [
+                    "small",
+                    "block-b"
+                ],
+                "effect": []
+            },
+            "blocktype-3": {
+                "cause": [
+                    "big",
+                    "block-c"
+                ],
+                "effect": []
+            },
+            "blocktype-4": {
+                "cause": [
+                    "big",
+                    "block-d"
+                ],
+                "effect": []
+            },
+            "clear-2": {
+                "cause": [
+                    "block-b"
+                ],
+                "effect": []
+            },
+            "clear-3": {
+                "cause": [
+                    "block-c"
+                ],
+                "effect": []
+            },
+            "clear-4": {
+                "cause": [
+                    "block-d"
+                ],
+                "effect": []
+            },
+            "onground-2": {
+                "cause": [
+                    "block-b"
+                ],
+                "effect": []
+            },
+            "onground-3": {
+                "cause": [
+                    "block-c"
+                ],
+                "effect": []
+            },
+            "onground-4": {
+                "cause": [
+                    "block-d"
+                ],
+                "effect": []
+            }
+        },
+        "cl_lv": 1
+    }
+}
