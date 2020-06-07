@@ -1,0 +1,62 @@
+[
+    {
+        "agent": [
+            130.0,
+            198.0
+        ],
+        "block-a": [
+            130.0,
+            198.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "up"
+    },
+    {
+        "agent": [
+            129.0,
+            198.0
+        ],
+        "block-a": [
+            129.0,
+            198.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "up"
+    },
+    {
+        "agent": [
+            128.0,
+            198.0
+        ],
+        "block-a": [
+            128.0,
+            198.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "up"
+    },
+    {
+        "agent": [
+            127.0,
+            198.0
+        ],
+        "block-a": [
+            127.0,
+            198.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "up"
+    },
+    {
+        "agent": [
+            126.0,
+            198.0
+        ],
+        "block-a": [
+            126.0,
+            198.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "up"
+    }
+]
