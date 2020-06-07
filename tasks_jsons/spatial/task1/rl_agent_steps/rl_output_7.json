@@ -1,0 +1,86 @@
+[
+    {
+        "agent": [
+            125.0,
+            209.0
+        ],
+        "block-b": [
+            125.0,
+            209.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "left"
+    },
+    {
+        "agent": [
+            125.0,
+            208.0
+        ],
+        "block-b": [
+            125.0,
+            208.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "left"
+    },
+    {
+        "agent": [
+            125.0,
+            207.0
+        ],
+        "block-b": [
+            125.0,
+            207.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "left"
+    },
+    {
+        "agent": [
+            125.0,
+            206.0
+        ],
+        "block-b": [
+            125.0,
+            206.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "left"
+    },
+    {
+        "agent": [
+            125.0,
+            205.0
+        ],
+        "block-b": [
+            125.0,
+            205.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "left"
+    },
+    {
+        "agent": [
+            125.0,
+            204.0
+        ],
+        "block-b": [
+            125.0,
+            204.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "left"
+    },
+    {
+        "agent": [
+            125.0,
+            203.0
+        ],
+        "block-b": [
+            125.0,
+            203.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "left"
+    }
+]

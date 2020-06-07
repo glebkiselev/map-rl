@@ -40,7 +40,7 @@
             "orientation": "below",
             "activity": 4,
             "cl_lv_init": 0,
-            "cl_lv_goal": 1
+            "cl_lv_goal": 0
         },
         "ag2": {
             "handempty": {
@@ -70,7 +70,7 @@
             },
             "block-a": {
                 "r": 1,
-                "x": 200.0,
+                "x": 120.0,
                 "y": 43.0
             },
             "block-c": {
@@ -169,7 +169,7 @@
             "orientation": "below",
             "activity": 4,
             "cl_lv_init": 0,
-            "cl_lv_goal": 1,
+            "cl_lv_goal": 0,
             "holding": {
                 "cause": [
                     "ag1",
@@ -201,7 +201,7 @@
             },
             "block-a": {
                 "r": 1,
-                "x": 200.0,
+                "x": 120.0,
                 "y": 43.0
             },
             "block-c": {

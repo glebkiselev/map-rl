@@ -1,0 +1,122 @@
+[
+    {
+        "agent": [
+            41.0,
+            97.0
+        ],
+        "block-b": [
+            41.0,
+            97.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "right"
+    },
+    {
+        "agent": [
+            41.0,
+            98.0
+        ],
+        "block-b": [
+            41.0,
+            98.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "right"
+    },
+    {
+        "agent": [
+            41.0,
+            99.0
+        ],
+        "block-b": [
+            41.0,
+            99.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "right"
+    },
+    {
+        "agent": [
+            41.0,
+            100.0
+        ],
+        "block-b": [
+            41.0,
+            100.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "down"
+    },
+    {
+        "agent": [
+            42.0,
+            100.0
+        ],
+        "block-b": [
+            42.0,
+            100.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "right"
+    },
+    {
+        "agent": [
+            42.0,
+            101.0
+        ],
+        "block-b": [
+            42.0,
+            101.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "down"
+    },
+    {
+        "agent": [
+            43.0,
+            101.0
+        ],
+        "block-b": [
+            43.0,
+            101.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "right"
+    },
+    {
+        "agent": [
+            43.0,
+            102.0
+        ],
+        "block-b": [
+            43.0,
+            102.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "right"
+    },
+    {
+        "agent": [
+            43.0,
+            103.0
+        ],
+        "block-b": [
+            43.0,
+            103.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "right"
+    },
+    {
+        "agent": [
+            43.0,
+            104.0
+        ],
+        "block-b": [
+            43.0,
+            104.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "right"
+    }
+]

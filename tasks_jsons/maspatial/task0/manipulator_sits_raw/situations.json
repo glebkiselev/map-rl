@@ -6,7 +6,7 @@
             0
         ],
         "grabbed": false,
-        "block_pos": 0,
+        "block_pos": 2,
         "task": "grab",
         "id": 0
     },
@@ -17,7 +17,7 @@
             0
         ],
         "grabbed": true,
-        "block_pos": 2,
+        "block_pos": 1,
         "task": "release",
         "id": 1
     },
@@ -42,5 +42,27 @@
         "block_pos": 0,
         "task": "release",
         "id": 3
+    },
+    {
+        "manipulator_angles": [
+            0,
+            0,
+            0
+        ],
+        "grabbed": false,
+        "block_pos": 0,
+        "task": "grab",
+        "id": 4
+    },
+    {
+        "manipulator_angles": [
+            0,
+            0,
+            0
+        ],
+        "grabbed": true,
+        "block_pos": 0,
+        "task": "release",
+        "id": 5
     }
 ]

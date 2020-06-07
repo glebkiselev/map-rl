@@ -1,0 +1,159 @@
+[
+    {
+        "agent": [
+            173.0,
+            109.0
+        ],
+        "block-c": [
+            173.0,
+            109.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "left"
+    },
+    {
+        "agent": [
+            173.0,
+            108.0
+        ],
+        "block-c": [
+            173.0,
+            108.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "left"
+    },
+    {
+        "agent": [
+            173.0,
+            107.0
+        ],
+        "block-c": [
+            173.0,
+            107.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "up"
+    },
+    {
+        "agent": [
+            172.0,
+            107.0
+        ],
+        "block-c": [
+            172.0,
+            107.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "up"
+    },
+    {
+        "agent": [
+            171.0,
+            107.0
+        ],
+        "block-c": [
+            171.0,
+            107.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "left"
+    },
+    {
+        "agent": [
+            171.0,
+            106.0
+        ],
+        "block-c": [
+            171.0,
+            106.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "left"
+    },
+    {
+        "agent": [
+            171.0,
+            105.0
+        ],
+        "block-c": [
+            171.0,
+            105.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "put down",
+        "block_pos": 2
+    },
+    {
+        "agent": [
+            171.0,
+            105.0
+        ],
+        "block-c": [
+            170.0,
+            104.0
+        ],
+        "in_hand": "nothing",
+        "action": "right"
+    },
+    {
+        "agent": [
+            171.0,
+            106.0
+        ],
+        "block-c": [
+            170.0,
+            104.0
+        ],
+        "in_hand": "nothing",
+        "action": "right"
+    },
+    {
+        "agent": [
+            171.0,
+            107.0
+        ],
+        "block-c": [
+            170.0,
+            104.0
+        ],
+        "in_hand": "nothing",
+        "action": "right"
+    },
+    {
+        "agent": [
+            171.0,
+            108.0
+        ],
+        "block-c": [
+            170.0,
+            104.0
+        ],
+        "in_hand": "nothing",
+        "action": "right"
+    },
+    {
+        "agent": [
+            171.0,
+            109.0
+        ],
+        "block-c": [
+            170.0,
+            104.0
+        ],
+        "in_hand": "nothing",
+        "action": "down"
+    },
+    {
+        "agent": [
+            172.0,
+            109.0
+        ],
+        "block-c": [
+            170.0,
+            104.0
+        ],
+        "in_hand": "nothing",
+        "action": "down"
+    }
+]

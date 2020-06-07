@@ -145,9 +145,22 @@ def create_dir(path):
     if not os.path.exists(path):
         os.mkdir(path)
 
+#from memory_profiler import profile
+import cProfile
 
+def profile(func):
+    """Decorator for run function profile"""
+    def wrapper(*args, **kwargs):
+        profile_filename = func.__name__ + '.prof'
+        profiler = cProfile.Profile()
+        result = profiler.runcall(func, *args, **kwargs)
+        profiler.dump_stats(profile_filename)
+        return result
+    return wrapper
+
+@profile
 def main():
-    task_num = '3'
+    task_num = '2'
     type = 'maspatial'
     type_prefix = f'tasks_jsons/{type}/'
     path_prefix = f'{type_prefix}task{task_num}/'
@@ -180,6 +193,7 @@ def main():
                   'save_path': rl_agent_steps_path}
 
     # rl agent trains to decompose high-level tasks into atomic steps
+    # todo check pd act
     train_rl_multiple_files(tasks_files, parameters)
 
     # find 'pick up' and 'put down' actions and parse them into manipulator env-friendly

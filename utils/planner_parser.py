@@ -273,6 +273,7 @@ def parse(from_path, to_path, multiple=True, window_size=30):
             #united_tasks_indices = str(count)
         count += 1
     name = 'tasks_' + united_tasks_indices + '.json'
+    united_task, united_tasks_indices = check_manipulator(united_task, united_tasks_indices, to_path)
     with open(to_path + 'parsed_' + name, 'w+') as write:
         write.write(json.dumps(crop_task_map(united_task), indent=4))
 

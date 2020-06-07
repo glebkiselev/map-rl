@@ -1,0 +1,47 @@
+{
+    "map": {
+        "walls": null,
+        "rows": 24.0,
+        "cols": 1.0,
+        "full_rows": 250,
+        "full_cols": 250,
+        "start_x": 125.0,
+        "start_y": 202.0
+    },
+    "agent": {
+        "start_x": 0.0,
+        "start_y": 0.0,
+        "goal_x": 0.0,
+        "goal_y": 0.0,
+        "holding_start": "block-b",
+        "holding_goal": null,
+        "r": 5,
+        "coord_mode": "cropped"
+    },
+    "blocks": {
+        "block-a": {
+            "start_x": 148.0,
+            "start_y": 200.0,
+            "goal_x": 148.0,
+            "goal_y": 200.0,
+            "r": 1,
+            "coord_mode": "full"
+        },
+        "block-c": {
+            "start_x": 148.0,
+            "start_y": 202.0,
+            "goal_x": 148.0,
+            "goal_y": 202.0,
+            "r": 1,
+            "coord_mode": "full"
+        },
+        "block-b": {
+            "start_x": 0.0,
+            "start_y": 0.0,
+            "goal_x": 23.0,
+            "goal_y": 0.0,
+            "r": 1,
+            "coord_mode": "cropped"
+        }
+    }
+}

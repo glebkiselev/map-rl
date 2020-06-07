@@ -1,0 +1,111 @@
+[
+    {
+        "agent": [
+            201.0,
+            114.0
+        ],
+        "block-c": [
+            200.0,
+            109.0
+        ],
+        "in_hand": "nothing",
+        "action": "left"
+    },
+    {
+        "agent": [
+            201.0,
+            113.0
+        ],
+        "block-c": [
+            200.0,
+            109.0
+        ],
+        "in_hand": "nothing",
+        "action": "left"
+    },
+    {
+        "agent": [
+            201.0,
+            112.0
+        ],
+        "block-c": [
+            200.0,
+            109.0
+        ],
+        "in_hand": "nothing",
+        "action": "left"
+    },
+    {
+        "agent": [
+            201.0,
+            111.0
+        ],
+        "block-c": [
+            200.0,
+            109.0
+        ],
+        "in_hand": "nothing",
+        "action": "left"
+    },
+    {
+        "agent": [
+            201.0,
+            110.0
+        ],
+        "block-c": [
+            200.0,
+            109.0
+        ],
+        "in_hand": "nothing",
+        "action": "pick up",
+        "block_pos": 2
+    },
+    {
+        "agent": [
+            201.0,
+            110.0
+        ],
+        "block-c": [
+            201.0,
+            110.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "right"
+    },
+    {
+        "agent": [
+            201.0,
+            111.0
+        ],
+        "block-c": [
+            201.0,
+            111.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "right"
+    },
+    {
+        "agent": [
+            201.0,
+            112.0
+        ],
+        "block-c": [
+            201.0,
+            112.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "right"
+    },
+    {
+        "agent": [
+            201.0,
+            113.0
+        ],
+        "block-c": [
+            201.0,
+            113.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "right"
+    }
+]

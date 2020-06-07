@@ -1,0 +1,58 @@
+[
+    {
+        "agent": [
+            179.0,
+            110.0
+        ],
+        "in_hand": "nothing",
+        "action": "right"
+    },
+    {
+        "agent": [
+            179.0,
+            111.0
+        ],
+        "in_hand": "nothing",
+        "action": "down"
+    },
+    {
+        "agent": [
+            180.0,
+            111.0
+        ],
+        "in_hand": "nothing",
+        "action": "right"
+    },
+    {
+        "agent": [
+            180.0,
+            112.0
+        ],
+        "in_hand": "nothing",
+        "action": "down"
+    },
+    {
+        "agent": [
+            181.0,
+            112.0
+        ],
+        "in_hand": "nothing",
+        "action": "right"
+    },
+    {
+        "agent": [
+            181.0,
+            113.0
+        ],
+        "in_hand": "nothing",
+        "action": "right"
+    },
+    {
+        "agent": [
+            181.0,
+            114.0
+        ],
+        "in_hand": "nothing",
+        "action": "down"
+    }
+]

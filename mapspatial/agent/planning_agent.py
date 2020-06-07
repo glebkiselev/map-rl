@@ -457,9 +457,12 @@ class SpAgent(PlanningAgent):
         search = SpSearch(self.task, self.task_file, self.backward, self.subsearch)
         solution = search.search_plan()
         # make goal sit be the new start
-        self.task.start_situation = self.task.goal_situation
-        self.task.start_map = self.task.goal_map
-        self.task.init_cl_lv = self.task.goal_cl_lv
+        # self.task.start_situation = self.task.goal_situation
+        # self.task.start_map = self.task.goal_map
+        # self.task.init_cl_lv = self.task.goal_cl_lv
+        self.task.start_situation = search.goal_pm.sign
+        self.task.start_map = search.goal_pm.sign
+        self.task.init_cl_lv = search.goal_cl_lv
         self.task.iteration = max(self.task.additions[0])
         if solution:
             if isinstance(solution[0][-1][-1], dict):

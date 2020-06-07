@@ -1,0 +1,122 @@
+[
+    {
+        "agent": [
+            210.0,
+            130.0
+        ],
+        "in_hand": "nothing",
+        "action": "up"
+    },
+    {
+        "agent": [
+            209.0,
+            130.0
+        ],
+        "in_hand": "nothing",
+        "action": "left"
+    },
+    {
+        "agent": [
+            209.0,
+            129.0
+        ],
+        "in_hand": "nothing",
+        "action": "up"
+    },
+    {
+        "agent": [
+            208.0,
+            129.0
+        ],
+        "in_hand": "nothing",
+        "action": "up"
+    },
+    {
+        "agent": [
+            207.0,
+            129.0
+        ],
+        "in_hand": "nothing",
+        "action": "left"
+    },
+    {
+        "agent": [
+            207.0,
+            128.0
+        ],
+        "in_hand": "nothing",
+        "action": "left"
+    },
+    {
+        "agent": [
+            207.0,
+            127.0
+        ],
+        "in_hand": "nothing",
+        "action": "left"
+    },
+    {
+        "agent": [
+            207.0,
+            126.0
+        ],
+        "in_hand": "nothing",
+        "action": "left"
+    },
+    {
+        "agent": [
+            207.0,
+            125.0
+        ],
+        "in_hand": "nothing",
+        "action": "up"
+    },
+    {
+        "agent": [
+            206.0,
+            125.0
+        ],
+        "in_hand": "nothing",
+        "action": "up"
+    },
+    {
+        "agent": [
+            205.0,
+            125.0
+        ],
+        "in_hand": "nothing",
+        "action": "left"
+    },
+    {
+        "agent": [
+            205.0,
+            124.0
+        ],
+        "in_hand": "nothing",
+        "action": "up"
+    },
+    {
+        "agent": [
+            204.0,
+            124.0
+        ],
+        "in_hand": "nothing",
+        "action": "up"
+    },
+    {
+        "agent": [
+            203.0,
+            124.0
+        ],
+        "in_hand": "nothing",
+        "action": "up"
+    },
+    {
+        "agent": [
+            202.0,
+            124.0
+        ],
+        "in_hand": "nothing",
+        "action": "up"
+    }
+]

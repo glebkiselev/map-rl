@@ -1,0 +1,42 @@
+[
+    {
+        "agent": [
+            41.0,
+            101.0
+        ],
+        "in_hand": "nothing",
+        "action": "down"
+    },
+    {
+        "agent": [
+            42.0,
+            101.0
+        ],
+        "in_hand": "nothing",
+        "action": "right"
+    },
+    {
+        "agent": [
+            42.0,
+            102.0
+        ],
+        "in_hand": "nothing",
+        "action": "right"
+    },
+    {
+        "agent": [
+            42.0,
+            103.0
+        ],
+        "in_hand": "nothing",
+        "action": "right"
+    },
+    {
+        "agent": [
+            42.0,
+            104.0
+        ],
+        "in_hand": "nothing",
+        "action": "down"
+    }
+]

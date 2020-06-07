@@ -66,6 +66,19 @@ def sit_simularity(base, sit1, sit2):
 
     return True
 
+def act_simularity(act, sit,base='meaning'):
+    act_sub = [event for event in act.cause if "contain" not in event.get_signs_names() \
+               and 'location' not in event.get_signs_names() and 'orientation' not in event.get_signs_names() and 'I' not in event.get_signs_names()]
+    sit_sub = [event for event in sit.cause if "contain" not in event.get_signs_names() and 'orientation' not in event.get_signs_names()]
+    for event in act_sub:
+        for fevent in sit_sub:
+            if event.resonate(base, fevent):
+                break
+        else:
+            return False
+
+    return True
+
 def search_cm(events_list, signs, base='image'):
     searched = {}
     for event in events_list:

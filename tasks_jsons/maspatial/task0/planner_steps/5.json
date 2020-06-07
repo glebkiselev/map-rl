@@ -33,10 +33,10 @@
     },
     "global-start": {
         "ag1": {
-            "orientation": "right",
+            "orientation": "above",
             "activity": 4,
             "cl_lv_init": 0,
-            "cl_lv_goal": 1,
+            "cl_lv_goal": 0,
             "handempty": {
                 "cause": [],
                 "effect": []
@@ -58,8 +58,8 @@
         "objects": {
             "ag1": {
                 "r": 5,
-                "x": 174.0,
-                "y": 47.0
+                "x": 120.0,
+                "y": 74.0
             },
             "ag2": {
                 "r": 5,
@@ -68,7 +68,7 @@
             },
             "block-a": {
                 "r": 1,
-                "x": 200.0,
+                "x": 120.0,
                 "y": 43.0
             },
             "block-c": {
@@ -77,7 +77,7 @@
                 "y": 193.0
             },
             "block-b": {
-                "x": 200.0,
+                "x": 120.0,
                 "y": 43.0,
                 "r": 1
             }
@@ -147,10 +147,10 @@
     },
     "global-finish": {
         "ag1": {
-            "orientation": "right",
+            "orientation": "above",
             "activity": 4,
             "cl_lv_init": 0,
-            "cl_lv_goal": 1,
+            "cl_lv_goal": 0,
             "handempty": {
                 "cause": [],
                 "effect": []
@@ -172,17 +172,17 @@
         "objects": {
             "ag1": {
                 "r": 5,
-                "x": 174.0,
-                "y": 47.0
+                "x": 120.0,
+                "y": 74.0
             },
             "ag2": {
                 "r": 5,
-                "x": 103.0,
+                "x": 100.0,
                 "y": 193.0
             },
             "block-a": {
                 "r": 1,
-                "x": 200.0,
+                "x": 120.0,
                 "y": 43.0
             },
             "block-c": {
@@ -191,7 +191,7 @@
                 "y": 193.0
             },
             "block-b": {
-                "x": 200.0,
+                "x": 120.0,
                 "y": 43.0,
                 "r": 1
             }

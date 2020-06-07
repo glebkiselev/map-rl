@@ -58,6 +58,7 @@ class SpSearch(MapSearch):
         self.subtasks = task.subtasks
         self.actions = task.actions
         self.iteration = task.iteration
+        self.double_rotate = False
 
 
     def search_plan(self):
@@ -90,6 +91,12 @@ class SpSearch(MapSearch):
 
         if self.actions:
             active_signif = {act for act in active_signif if act.sign.name in self.actions}
+        # if not self.double_rotate and current_plan:
+        #     if current_plan[-1][1] == 'rotate':
+        #         active_signif = {act for act in active_signif if 'rotate' not in act.sign.name}
+        #     else:
+        #         active_signif.add(self.world_model['rotate'].significances[1])
+
 
         meanings = []
         for pm_signif in active_signif:
@@ -170,12 +177,15 @@ class SpSearch(MapSearch):
                 else:
                     subplan = self.hierarchical_exp_sp_search(active_pm.sign.images[1], active_map.sign.images[1],
                                                                   next_pm, next_map, iteration, prev_state, acts)
+                    if not subplan:
+                        logging.info(f'Не могу найти поддействия для {script.sign.name}')
 
             if not subplan:
                 plan.append((active_pm.sign.images[1], name, script, ag_mask, (ag_place, direction),
                              (active_map, self.clarification_lv), (self.additions[0][iteration], self.additions[0][iteration+1])))
             else:
                 plan.extend(subplan)
+                iteration+=len(subplan) -1
                 logging.info(
                     'Сложное действие {0} уточнено. Найденные поддействия: {1}'.format(script.sign.name, [part[1] for part in subplan]))
             if self.clarification_lv > 0:
@@ -195,6 +205,7 @@ class SpSearch(MapSearch):
                 if flag:
                     final_plans.append(plan)
                     plan_actions = [x.sign.name for _, _, x, _, _, _, _ in plan]
+                    self.goal_pm = next_pm
                     logging.info("Цель достигнута. Длина найденного плана: {0}".format(len(plan)))
                     logging.info(plan_actions)
                 else:
@@ -305,12 +316,18 @@ class SpSearch(MapSearch):
                             or exp_act.sign.name.startswith('Abstract') :
                         result, checked = self._check_activity(exp_act, active_pm)
                     else:
+                        #result = act_simularity(exp_act, active_pm)
                         result, checked = self._check_activity(exp_act, active_pm, expandable=False)
                 except Exception:
                     # delete expanded simple actions
                     self.exp_acts = [act for act in self.exp_acts[act] if act[1] != exp_act]
                 if result:
                     applicable.append((self.world_model["I"], checked))
+            if not applicable:
+                for exp_act in exp_acts:
+                    result = act_simularity(exp_act, active_pm)
+                    if result:
+                        applicable.append((self.world_model["I"], exp_act))
         else:
             finall_plans = cur_plan
 
@@ -1217,7 +1234,10 @@ class SpSearch(MapSearch):
         if script.sign.name == 'pick-up':
             if block_name in new_x_y['objects'].keys():
                 new_x_y['objects'].pop(block_name)
-            new_x_y[self.I_obj.name].pop('handempty')
+            if 'handempty' in new_x_y[self.I_obj.name]:
+                new_x_y[self.I_obj.name].pop('handempty')
+            else:
+                print()
             new_x_y[self.I_obj.name]['holding'] = {'cause': [self.I_obj.name, block_name], 'effect': []}
 
         # for put-down script
@@ -1360,9 +1380,44 @@ class SpSearch(MapSearch):
             return cell_map, direction, new_situation, cell_coords, new_x_y, cell_location, \
             near_loc, region_map
         else:
-
             new_x_y['objects'][self.I_obj.name]['x'] = (fn_cell_4[2] - fn_cell_4[0]) // 2 + fn_cell_4[0]
             new_x_y['objects'][self.I_obj.name]['y'] = (fn_cell_4[3] - fn_cell_4[1]) // 2 + fn_cell_4[1]
+            if holding:
+                block_name = [sign.name for sign in holding.get_signs() if 'block' in sign.name][0]
+                if block_name in new_x_y['objects'].keys():
+                    new_x_y['objects'].pop(block_name)
+                if 'handempty' in new_x_y[self.I_obj.name].keys():
+                    new_x_y[self.I_obj.name].pop('handempty')
+                new_x_y[self.I_obj.name]['holding'] = {'cause': [self.I_obj.name, block_name], 'effect': []}
+            else:
+                # stack script here
+                if 'holding' in new_x_y[self.I_obj.name]:
+                    block_name = [el for el in new_x_y[self.I_obj.name]['holding']['cause'] if el != self.I_obj.name][0]
+                    ground_block = None
+                    on_signs = search_cm([ev for ev in script.effect], [self.world_model['on']], base = 'meaning')
+                    flag = False
+                    for ons in on_signs.values():
+                        for elem in ons:
+                            cm_signs_names  = [s.name for s in elem.get_signs()]
+                            if block_name in cm_signs_names:
+                                for block in cm_signs_names:
+                                    if block in new_x_y['objects']:
+                                        ground_block = block
+                                        flag = True
+                                        break
+                            if flag:
+                                break
+                        if flag:
+                            break
+                    if self.additions[0]:
+                        block_radius = self.additions[0][0]['objects'][block_name]['r']
+                    else:
+                        block_radius = 1
+                    new_x_y['objects'][block_name] = new_x_y['objects'][ground_block]
+                    new_x_y['objects'][block_name]['r'] = block_radius
+                    new_x_y[self.I_obj.name].pop('holding')
+                    new_x_y[self.I_obj.name]['handempty'] = {'cause':[], 'effect':[]}
+
 
             region_map, cell_map, cell_location, near_loc, _, _, _ = signs_markup(new_x_y, self.additions[3],
                                                                                                 self.I_obj.name, fn_cell_4)
@@ -1852,10 +1907,12 @@ class SpSearch(MapSearch):
                 (goal_coords[1] - prev_mid[1]) ** 2 + (goal_coords[0] - prev_mid[0]) ** 2)
 
             # if next cell closer - good (iff not near the block)
-            if not stright[1]:
+            if not stright[1] and script.sign.name != 'stack':
                 if path <= a:
                     counter += 4
-
+            elif stright[1]:
+                if stright[1][1].sign.name != 'wall' and script.sign.name == 'stack':
+                    counter += 4
             if goal_region.name != cont_region:
                 goal_dir = self.additions[1][cont_region][goal_region.name][1]
                 # do not rotate to the wall if there are no hole
@@ -1907,12 +1964,12 @@ class SpSearch(MapSearch):
                         counter += 2  # +2 if agent go back to the stright goal way #TODO rework when go from far
 
             else:
-                if not stright[1] and script.sign.name == 'move':
-                    counter += 1
-                elif stright[1] and script.sign.name == 'rotate':
+                # if not stright[1] and script.sign.name == 'move':
+                #     counter += 1
+                if stright[1] and script.sign.name == 'rotate':
                     # rotate to blocks
-                    if stright[1] != 'wall':
-                        counter+=1
+                    if stright[1][1].sign.name != 'wall':
+                        counter+=3
                 # if we are already in the goal cell
                 if a < size:
                     if self.clarification_lv >= self.goal_cl_lv:
@@ -1972,10 +2029,13 @@ class SpSearch(MapSearch):
                         counter+=5
                 # we are in region, but not in cell.
                 else:
-                    if current_direction.name == self.goal_state[self.I_obj.name]['orientation']:
-                        counter += 2
+                    # if current_direction.name == self.goal_state[self.I_obj.name]['orientation']:
+                    #     counter += 2
                     if path <= a:
                         counter += 3
+                    if stright[1] and script.sign.name == 'rotate':
+                        if stright[1][1].sign.name != 'wall' and path <= a:
+                            counter += 3
                     if prev_act == 'rotate' and script.sign.name == 'rotate':
                         counter = 0
                     if script.sign.name != 'rotate' and script.sign.name != 'move':

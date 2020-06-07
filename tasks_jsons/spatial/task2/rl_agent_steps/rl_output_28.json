@@ -1,0 +1,74 @@
+[
+    {
+        "agent": [
+            154.0,
+            178.0
+        ],
+        "block-c": [
+            154.0,
+            178.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "right"
+    },
+    {
+        "agent": [
+            154.0,
+            179.0
+        ],
+        "block-c": [
+            154.0,
+            179.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "right"
+    },
+    {
+        "agent": [
+            154.0,
+            180.0
+        ],
+        "block-c": [
+            154.0,
+            180.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "right"
+    },
+    {
+        "agent": [
+            155.0,
+            171.0
+        ],
+        "block-c": [
+            155.0,
+            171.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "up"
+    },
+    {
+        "agent": [
+            154.0,
+            171.0
+        ],
+        "block-c": [
+            154.0,
+            171.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "up"
+    },
+    {
+        "agent": [
+            153.0,
+            171.0
+        ],
+        "block-c": [
+            153.0,
+            171.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "up"
+    }
+]

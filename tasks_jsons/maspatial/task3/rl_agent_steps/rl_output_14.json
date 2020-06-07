@@ -1,0 +1,50 @@
+[
+    {
+        "agent": [
+            202.0,
+            114.0
+        ],
+        "block-c": [
+            202.0,
+            114.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "up"
+    },
+    {
+        "agent": [
+            201.0,
+            114.0
+        ],
+        "block-c": [
+            201.0,
+            114.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "right"
+    },
+    {
+        "agent": [
+            201.0,
+            115.0
+        ],
+        "block-c": [
+            201.0,
+            115.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "right"
+    },
+    {
+        "agent": [
+            202.0,
+            106.0
+        ],
+        "block-c": [
+            202.0,
+            106.0
+        ],
+        "in_hand": "block_1.0",
+        "action": "up"
+    }
+]

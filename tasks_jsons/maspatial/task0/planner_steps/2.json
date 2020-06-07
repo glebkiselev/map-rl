@@ -33,10 +33,10 @@
     },
     "global-start": {
         "ag1": {
-            "orientation": "right",
+            "orientation": "above-right",
             "activity": 4,
             "cl_lv_init": 0,
-            "cl_lv_goal": 1,
+            "cl_lv_goal": 0,
             "holding": {
                 "cause": [
                     "ag1",
@@ -58,8 +58,8 @@
         "objects": {
             "ag1": {
                 "r": 5,
-                "x": 147.0,
-                "y": 47.0
+                "x": 92.0,
+                "y": 102.0
             },
             "ag2": {
                 "r": 5,
@@ -68,7 +68,7 @@
             },
             "block-a": {
                 "r": 1,
-                "x": 200.0,
+                "x": 120.0,
                 "y": 43.0
             },
             "block-c": {
@@ -152,10 +152,10 @@
     },
     "global-finish": {
         "ag1": {
-            "orientation": "right",
+            "orientation": "above-right",
             "activity": 4,
             "cl_lv_init": 0,
-            "cl_lv_goal": 1,
+            "cl_lv_goal": 0,
             "holding": {
                 "cause": [
                     "ag1",
@@ -177,8 +177,8 @@
         "objects": {
             "ag1": {
                 "r": 5,
-                "x": 174.0,
-                "y": 47.0
+                "x": 120.0,
+                "y": 74.0
             },
             "ag2": {
                 "r": 5,
@@ -187,7 +187,7 @@
             },
             "block-a": {
                 "r": 1,
-                "x": 200.0,
+                "x": 120.0,
                 "y": 43.0
             },
             "block-c": {

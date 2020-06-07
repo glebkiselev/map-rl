@@ -3,7 +3,7 @@ import numpy as np
 from gym import spaces
 from gym.utils import seeding
 from agents.dqn.rewards import tolerance
-
+import logging
 
 DEGREES = 30
 ACTIONS = ['1CW', '1CCW', '2CW', '2CCW', '3CW', '3CCW', '4CW', '4CCW', 'grab', 'release']
@@ -61,7 +61,9 @@ class Manipulator(gym.Env):
         self.manipulator_angles = self.situation['manipulator_angles']
         self.grabbed = self.situation['grabbed']
         self.block_pos = self.situation['block_pos']
-        # self.block_pos = np.random.choice(list(range(8)))
+        if not self.block_pos:
+            logging.info('Check manipulator. Can be wrong coordinates.')
+            self.block_pos = np.random.choice(list(range(8)))
         self.block_angle = BLOCK_TO_ANGLE[self.block_pos]
         self.block_coords = np.array(BLOCK_TO_COORDS[self.block_pos])
         self.task = self.situation['task']

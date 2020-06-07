@@ -6,7 +6,6 @@ import json
 from .config_master import create_config, get_config
 from mapspatial.mapplanner import MapPlanner
 
-
 def main(args, task_num, type, solution_save_path):
     if platform.system() != 'Windows':
         delim = '/'

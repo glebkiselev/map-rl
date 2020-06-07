@@ -1,5 +1,5 @@
 {
-  "task-name": "maspatial task 1",
+  "task-name": "maspatial task 3",
   "agents":
         ["ag1", "ag2"],
   "map": {
@@ -62,8 +62,8 @@
                     },
                     "block-d": {
                         "r": 1,
-                        "x": 130.0,
-                        "y": 15.0
+                        "x": 174.0,
+                        "y": 38.0
                     }
              },
               "conditions":{
@@ -190,13 +190,13 @@
                     },
                     "block-c": {
                         "r": 1,
-                        "x": 130.0,
-                        "y": 15.0
+                        "x": 174.0,
+                        "y": 38.0
                     },
                     "block-d": {
                         "r": 1,
-                        "x": 130.0,
-                        "y": 15.0
+                        "x": 174.0,
+                        "y": 38.0
                     }
              },
               "conditions":{
